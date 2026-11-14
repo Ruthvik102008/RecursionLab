@@ -19,8 +19,8 @@ function draft(){return drafts[problems[selected].id]||(drafts[problems[selected
 function persist(){try{localStorage.setItem(key,JSON.stringify({drafts,selected}));$('saved').textContent='Draft saved on this device';}catch{$('saved').textContent='Saving unavailable in this browser';}}
 function capture(){const d=draft();d.code=$('code').value;d.doctests=$('doctests').value;d.scratch=$('scratch').value;persist();}
 function drawProgress(){ $('coins-challenge')?.setAttribute('aria-pressed', String(selected === regularExercises));const count=problems.filter(p=>drafts[p.id]?.passed).length;$('progress').textContent=`${count} / ${problems.length} complete`;document.querySelectorAll('#exercise-list button').forEach((b,i)=>{b.setAttribute('aria-current',i===selected?'true':'false');b.textContent=`${drafts[problems[i].id]?.passed?'✓':String(i+1).padStart(2,'0')}  ${problems[i].title}`;});}
-$('shortcut').textContent = 'Ctrl / ⌘ + Enter to test · Ctrl / ⌘ + ] to indent';
-  const pythonTokens = /(?<comment>#[^\n]*)|(?<string>"""[\s\S]*?(?:"""|$)|'''[\s\S]*?(?:'''|$)|"(?:\\[^\n]|[^"\\\n])*"?|'(?:\\[^\n]|[^'\\\n])*'?)|(?<prompt>^\s*>>>|^\s*\.\.\.)|(?<number>\b(?:0[xX][\da-fA-F_]+|0[bB][01_]+|0[oO][0-7_]+|\d[\d_]*(?:\.[\d_]*)?(?:[eE][+-]?[\d_]+)?))|(?<word>[\p{ID_Start}_][\p{ID_Continue}]*)|(?<operator>[+*/%=<>!&|^~@:-]+)/gmu;
+$('shortcut').textContent = 'Tab / Shift+Tab to indent / outdent · Esc then Tab to leave · Ctrl / ⌘ + Enter to run';
+  const pythonTokens = /(?<comment>#[^\n]*)|(?<string>"""[\s\S]*?(?:"""|$)|'''[\s\S]*?(?:'''|$)|"(?:\\[^\n]|[^"\\\n])*"?|'(?:\\[^\n]|[^'\\\n])*'?)|(?<prompt>^[ \t]*>>>|^[ \t]*\.\.\.)|(?<indent>^(?: {4}|\t)+)|(?<number>\b(?:0[xX][\da-fA-F_]+|0[bB][01_]+|0[oO][0-7_]+|\d[\d_]*(?:\.[\d_]*)?(?:[eE][+-]?[\d_]+)?))|(?<word>[\p{ID_Start}_][\p{ID_Continue}]*)|(?<operator>[+*/%=<>!&|^~@:-]+)/gmu;
   const keywords = new Set('and as assert async await break case class continue def del elif else except False finally for from global if import in is lambda match None nonlocal not or pass raise return True try while with yield'.split(' '));
   const builtins = new Set('abs all any bool dict enumerate float int len list max min print range reversed set sorted str sum tuple type zip'.split(' '));
 
@@ -115,7 +115,48 @@ $('exercise-select').onchange=e=>select(Number(e.target.value));
 {const d=draft();$('code').value=d.code;$('doctests').value=d.doctests;$('scratch').value=d.scratch;select(selected);}
 for(const id of ['code','doctests','scratch']){
   $(id).addEventListener('input',()=>{capture();if(id!=='scratch'){draft().passed=false;persist();drawProgress();$('result-title').textContent='Changed since your last test';$('result-message').textContent='Test this version to check your changes.';$('results').replaceChildren();}});
-  $(id).addEventListener('keydown',e=>{if(e.key===']'&&(e.ctrlKey||e.metaKey)&&!e.altKey&&!e.shiftKey){e.preventDefault();const el=e.target,start=el.selectionStart,end=el.selectionEnd;el.setRangeText('    ',start,end,'end');el.dispatchEvent(new Event('input'));}if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();run(id==='scratch'?'scratch':'test');}});
+  const editor = $(id);
+  let leaveEditor = false;
+  editor.setAttribute('aria-describedby', 'shortcut');
+  editor.addEventListener('blur', () => { leaveEditor = false; });
+  editor.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      leaveEditor = true;
+      return;
+    }
+    const allowNavigation = leaveEditor;
+    leaveEditor = false;
+    if (event.key === 'Tab' && !event.altKey && !event.ctrlKey && !event.metaKey) {
+      if (allowNavigation || editor.readOnly) return;
+      event.preventDefault();
+      indentSelection(editor, event.shiftKey);
+    }
+    if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+      event.preventDefault();
+      run(id === 'scratch' ? 'scratch' : 'test');
+    }
+  });
+}
+function indentSelection(editor, outdent) {
+  const {value, selectionStart: start, selectionEnd: end} = editor;
+  if (start === end && !outdent) {
+    editor.setRangeText('    ', start, end, 'end');
+  } else {
+    const lineStart = start === 0 ? 0 : value.lastIndexOf('\n', start - 1) + 1;
+    const nextBreak = value.indexOf('\n', end > start ? end - 1 : end);
+    const lineEnd = nextBreak < 0 ? value.length : nextBreak;
+    const lines = value.slice(lineStart, lineEnd).split('\n');
+    const updated = lines.map(line => outdent ? line.replace(/^(?:\t| {1,4})/, '') : '    ' + line);
+    if (lines.every((line, index) => line === updated[index])) return;
+    const firstChange = updated[0].length - lines[0].length;
+    const replacement = updated.join('\n');
+    editor.setRangeText(replacement, lineStart, lineEnd, 'select');
+    if (start === end) {
+      const caret = Math.max(lineStart, start + firstChange);
+      editor.setSelectionRange(caret, caret);
+    }
+  }
+  editor.dispatchEvent(new Event('input', {bubbles: true}));
 }
 function setBusy(value){busy=value;$('test').disabled=value;$('run').disabled=value;$('stop').disabled=!value;$('exercise-select').disabled=value;document.querySelectorAll('#exercise-list button, #coins-challenge').forEach(b=>b.disabled=value);for(const id of ['code','doctests','scratch'])$(id).readOnly=value;}
 function kill(){worker?.terminate();worker=null;ready=false;clearTimeout(timer);}
