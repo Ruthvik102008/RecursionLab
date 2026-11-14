@@ -367,16 +367,23 @@ header a.brand:active .brand-mark {
 .profile-icon { flex: none; display: block; }
 .profile-icon--github { filter: brightness(0) invert(1); }
 
+@keyframes lesson-link-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  32% { transform: translateY(-8px) scale(1.065); }
+  60% { transform: translateY(2px) scale(.985); }
+  80% { transform: translateY(-3px) scale(1.02); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .lesson-nav a {
-    transition: transform 320ms cubic-bezier(.24, 1.85, .46, 1),
-      background-color 180ms ease, box-shadow 180ms ease;
+    transition: transform 100ms ease, background-color 180ms ease, box-shadow 180ms ease;
   }
-  @media (hover: hover) {
-    .lesson-nav a:hover { transform: translateY(-4px) scale(1.045); }
+
+  .lesson-nav a:is(:hover, :focus-visible):not(:active) {
+    animation: lesson-link-bounce 480ms ease-in-out;
   }
+
   .lesson-nav a:active {
-    transform: translateY(1px) scale(.94);
-    transition-duration: 90ms;
+    transform: translateY(2px) scale(.94);
   }
 }
