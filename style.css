@@ -181,3 +181,13 @@ button, select, summary, .lesson-nav a {
     }
   }
 }
+
+/* Paint guides in leading whitespace without changing editor text metrics. */
+.token-indent {
+  background: repeating-linear-gradient(
+    to right, #6e88ad55 0 1px, transparent 1px 4ch
+  );
+}
+.code-frame .code-backdrop, .code-frame textarea {
+  font-variant-ligatures: none;
+}
