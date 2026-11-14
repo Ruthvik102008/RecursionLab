@@ -1,6 +1,7 @@
 # Recursion Lab
 
 A free, independent study tool for UC Berkeley CS 61A exams and quizzes. Practice recursion and iteration with interactive Python exercises, editable doctests, and hints.
+This only covers recursion and a few other broader, related topics. Feel free to add onto this project or request any additional lessons.
 
 **[Open Recursion Lab in your browser](https://ruthvik102008.github.io/RecursionLab/lessons/home.html)**
 
