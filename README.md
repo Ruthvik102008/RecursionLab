@@ -1,19 +1,26 @@
 # Recursion Lab
 
-An independent CS 61A–inspired Python practice lab. Start with recursion foundations and tree recursion, then explore lists, linked lists, trees, mutation, objects, and iterators.
+A free, independent study tool for UC Berkeley CS 61A exams and quizzes. Practice recursion and iteration with interactive Python exercises, editable doctests, and hints.
 
 ## Run locally
 
-Clone this repository, open a terminal in its root, and run:
+1. Install Python 3 if you don't already have it.
+2. On this repository's GitHub page, select **Code → Download ZIP**, then unzip it. You can also clone it with `git clone https://github.com/Ruthvik102008/recursion-lab.git`.
+3. Open a terminal in the extracted or cloned folder, where `home.html` is located. Run the command for your system:
 
-```sh
-python -m http.server 8000
-```
+   | System | Command |
+   | --- | --- |
+   | Windows | `py -3 -m http.server 8000 --bind 127.0.0.1` |
+   | macOS or Linux | `python3 -m http.server 8000 --bind 127.0.0.1` |
 
-On Windows, use `py -m http.server 8000` if `python` is unavailable. Open <http://localhost:8000/>. Use the local server so the browser can load the worker and exercise files.
+   On Windows, if `py` is unavailable and `python --version` reports Python 3, use `python -m http.server 8000 --bind 127.0.0.1`.
+
+4. Keep the terminal open and visit [Recursion Lab](http://127.0.0.1:8000/home.html) in a current browser. Press **Ctrl+C** in the terminal when you're done.
+
+Use the local URL so the browser can load the Python worker and exercises. If port 8000 is already in use, choose another port in both the command and the URL. Keep using the same browser profile and URL to retain your saved work.
 
 ## How it works
 
-Choose an exercise, edit the starter Python, and run the doctests and built-in checks. You can also run custom inputs. A web worker runs Python through Pyodide, and the browser saves drafts and progress on the device. Python execution requires internet access to load Pyodide from its CDN. Linked course videos also require internet access.
+The app runs Python in your browser through Pyodide. Internet access is needed to load the Python runtime and open linked videos. Drafts and progress are stored in your browser.
 
-This is an independent student project. Course references and videos are credited in the lesson notes.
+Course references and videos are credited in the lesson notes.
