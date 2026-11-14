@@ -343,3 +343,42 @@ header a.brand:active .brand-mark {
   .home-intro { grid-template-columns: 1fr; gap: 16px; }
   .home .profile-card { width: min(100%, 340px); }
 }
+.home .python-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: .23em;
+  row-gap: .06em;
+}
+.python-word { color: #a8f3e4; white-space: nowrap; }
+.python-logo {
+  width: .69em;
+  height: auto;
+  object-fit: contain;
+}
+.campanile-o { position: relative; }
+.campanile {
+  position: absolute;
+  left: 54%;
+  bottom: .31em;
+  transform: translateX(-50%);
+  width: .105em;
+  height: .23em;
+  background: #ffda88;
+  border-radius: 1px 1px 0 0;
+}
+.campanile::before {
+  content: '';
+  position: absolute;
+  inset: -.12em -.018em auto;
+  height: .13em;
+  background: inherit;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.campanile span {
+  position: absolute;
+  inset: .045em 28% auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #142942;
+}
