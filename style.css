@@ -316,12 +316,12 @@ header a.brand:active .brand-mark {
 
 .home-intro {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 285px);
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 310px);
   align-items: center;
   gap: 28px;
 }
 .home .profile-card {
-  padding: 22px;
+  padding: 25px;
   border: 1px solid #587ba0;
   border-radius: 20px;
   background: linear-gradient(145deg, #264366, #192f4b);
@@ -333,11 +333,12 @@ header a.brand:active .brand-mark {
 }
 .home .profile-links {
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
+  gap: 10px;
 }
 .home .profile-card a {
+  gap: 10px;
+  padding: 10px 14px;
   margin: 0;
   border-color: #7094b7;
 }
@@ -362,3 +363,6 @@ header a.brand:active .brand-mark {
 /* Keep the wide monospace heading comfortably inside the intro column. */
 .home h1 { font-size: clamp(34px, 6vw, 72px); }
 .home .python-title { letter-spacing: -.045em; }
+
+.profile-icon { flex: none; display: block; }
+.profile-icon--github { filter: brightness(0) invert(1); }
