@@ -2,14 +2,14 @@
 
 A free, independent study tool for UC Berkeley CS 61A exams and quizzes. Practice recursion and iteration with interactive Python exercises, editable doctests, and hints.
 
-**[Open Recursion Lab in your browser](https://ruthvik102008.github.io/recursion-lab/lessons/home.html)**
+**[Open Recursion Lab in your browser](https://ruthvik102008.github.io/RecursionLab/lessons/home.html)**
 
 To open the lab in a new tab from GitHub, Ctrl-click the link (Command-click on macOS).
 
 ## Run locally
 
 1. Install Python 3 if you don't already have it.
-2. On this repository's GitHub page, select **Code → Download ZIP**, then unzip it. You can also clone it with `git clone https://github.com/Ruthvik102008/recursion-lab.git`.
+2. On this repository's GitHub page, select **Code → Download ZIP**, then unzip it. You can also clone it with `git clone https://github.com/Ruthvik102008/RecursionLab.git`.
 3. Open a terminal in the extracted or cloned folder, where `README.md` is located. Run the command for your system:
 
    | System | Command |
