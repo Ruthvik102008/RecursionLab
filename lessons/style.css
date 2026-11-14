@@ -393,15 +393,32 @@ header a.brand:active .brand-mark {
   body:not(.home) { zoom: .9; }
 }
 
-/* Same-origin page navigation keeps normal links and browser history. */
-@media (prefers-reduced-motion: no-preference) {
-  @view-transition {
-    navigation: auto;
-  }
+@view-transition {
+  navigation: auto;
+}
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 320ms;
+  animation-timing-function: ease-in-out;
+}
+
+/* Use an entrance fade when cross-document transitions are unavailable. */
+@supports not (view-transition-name: root) {
+  @media (prefers-reduced-motion: no-preference) {
+    body { animation: lab-page-enter 260ms ease-out both; }
+  }
+}
+
+@keyframes lab-page-enter {
+  from { opacity: .35; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 180ms;
-    animation-timing-function: ease-in-out;
+    animation: none;
   }
 }
