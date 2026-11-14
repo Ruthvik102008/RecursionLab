@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Iterators · Practice lab</title><meta name="description" content="8 distinct coding exercises, video lessons and clear notes for Iterators."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23172d42'/%3E%3Ctext x='5' y='23' fill='%238be0d2' font-size='23'%3E↻%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"><style>#notes details{padding:14px 18px;margin:20px 0;border:1px solid var(--line);border-radius:8px;background:white}#notes summary{cursor:pointer;font-weight:650}#notes .lesson-map{display:flex;flex-wrap:wrap;gap:10px}#notes .lesson-map a{padding:6px 12px;background:var(--pale);border-radius:6px}#notes .key{border-left:4px solid var(--accent);padding:12px 18px;background:var(--pale)}#notes section{scroll-margin-top:24px}#notes h3{font-size:19px}.practice-hint{margin:12px 0 20px;padding:10px 14px;border:1px solid var(--line);border-radius:7px}.practice-hint summary{cursor:pointer}.practice-hint p{margin:10px 0 0}</style></head>
+<body><header><div class="brand">↻ <strong>Recursion lab</strong></div><nav aria-label="Workbook views"><button id="practice-tab" aria-pressed="true">Practice</button><button id="notes-tab" aria-pressed="false">Your notes</button></nav><span id="runtime" role="status">Python loads when you run code</span></header><nav class="lesson-nav" aria-label="Lesson sets"><a href="foundations.html" data-lesson="foundations">Recursion foundations</a><a href="index.html" data-lesson="tree">Tree recursion &amp; partitions</a><a href="count-coins.html" data-lesson="coins">Q4 · Count Coins</a><a href="lists.html" data-lesson="lists">Lists &amp; sequences</a><a href="objects.html" data-lesson="objects">Objects &amp; types</a><a href="containers.html" data-lesson="containers">Containers</a><a href="linked-lists.html" data-lesson="linked-lists">Linked lists</a><a href="trees.html" data-lesson="trees">Trees</a><a href="mutation.html" data-lesson="mutation">Mutation</a><a href="oop.html" data-lesson="oop">Objects &amp; methods</a><a href="attributes.html" data-lesson="attributes">Attributes</a><a href="inheritance.html" data-lesson="inheritance">Inheritance &amp; special methods</a><a href="iterators.html" data-lesson="iterators" aria-current="page">Iterators</a><a href="efficiency.html" data-lesson="efficiency">Measuring efficiency</a></nav>
+<main id="practice"><aside><p class="eyebrow">6 VIDEOS · 8 CHALLENGES</p><h1>Iterators</h1><label for="exercise-select">Choose a coding problem</label><select id="exercise-select"></select><div id="exercise-list"></div></aside><section class="workspace"><div class="problem-heading"><span class="eyebrow" id="topic"></span><span id="progress"></span></div><h2 id="problem-title">01 · Trace shared and independent positions</h2><p id="prompt">s has at least three items. Make iterator a over s, alias b = iter(a), and a fresh iterator c over s. Return a tuple of next(a), next(b), next(c), next(a), in that order. Do not mutate s.</p><p class="constraint" id="constraint">Follow the approach specified in the prompt.</p><details class="practice-hint"><summary>Need a hint?</summary><p id="practice-hint"></p></details><div class="editor-top"><label for="code">Your Python code</label><span id="saved">Draft saved on this device</span></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" rows="13" aria-label="Your Python code">def bookmark_trace(s):
+    # Write your solution here.
+    pass
+</textarea><div class="actions"><button class="primary" id="test">Check work</button><button id="stop" disabled>Stop</button><span id="shortcut">Ctrl / ⌘ + Enter to test</span></div><section class="feedback" aria-live="polite"><h3 id="result-title">Ready for your first attempt</h3><p id="result-message">Write a solution, then test it. Feedback gives you a direction, never the implementation.</p><div id="results"></div></section><div class="try-grid"><section><label for="doctests">Editable doctests</label><p class="field-help">Add calls after &gt;&gt;&gt; and the expected output on the next line. Core checks still run.</p><textarea id="doctests" spellcheck="false" rows="9"></textarea></section><section><label for="scratch">Try your own inputs</label><p class="field-help">Call your functions or print intermediate results. The final expression is displayed.</p><textarea id="scratch" spellcheck="false" rows="5"></textarea><button id="run">Run input</button><pre id="scratch-output" aria-live="polite">Your output appears here.</pre></section></div></section></main><main id="notes" hidden><article id="notes-content"><p class="notes-download"><a href="iterators-notes.md" download>Download these notes</a></p><h1>Iterators: remember where you are, ask for what comes next</h1>
+<p>You already know how to process a list. An iterator adds a position: it remembers which values have been used and which value comes next. These six lessons explain that position, how loops move it, and how lazy built-ins produce values only when requested. The examples below are independent unless a later line continues the same example.</p>
+<nav class="lesson-map" aria-label="Notes sections"><a href="#iterator-position">1. Position</a><a href="#iterator-dictionaries">2. Dictionaries</a><a href="#iterator-loops">3. Loops</a><a href="#iterator-lazy">4. Lazy built-ins</a><a href="#iterator-zip">5. Zip</a><a href="#iterator-sharing">6. Shared streams</a></nav>
+<table><tr><th>Your video</th><th>What to understand</th></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=On-kFyFp8HY" target="_blank" rel="noopener">Iterators</a></td><td>iter, next, independent positions, remaining values, StopIteration</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=EU_IQkOgkNM" target="_blank" rel="noopener">Dictionary Iteration</a></td><td>Keys, values, items, insertion order, live views, mutation hazards</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=dA5NC8WvNIM" target="_blank" rel="noopener">For Statements</a></td><td>Reusable containers versus a consumed iterator</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=bYtkZGU4h_E" target="_blank" rel="noopener">Built-in Iterator Functions</a></td><td>Lazy map, filter, reversed, and materializing results</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=8fqSlBUHFkI" target="_blank" rel="noopener">Zip</a></td><td>Co-indexed tuples, shortest input, comparing sequences</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=p0acHiRp44M" target="_blank" rel="noopener">Using Iterators</a></td><td>Passing one current position between cooperating functions</td></tr></table>
+
+<section id="iterator-position"><h2>1. An iterable supplies an iterator; an iterator supplies the next value</h2>
+<p>An <strong>iterable</strong> is something you can pass to <code>iter</code>, such as a list, tuple, string, range, or dictionary. An <strong>iterator</strong> is an object you can pass to <code>next</code>. Picture a bookmark: calling next returns the bookmarked value and advances the bookmark. It does not remove the value from the original list.</p>
+<pre><code>numbers = [6, 9, 12]
+it = iter(numbers)
+next(it)                  # 6
+next(it)                  # 9
+numbers                   # [6, 9, 12]
+list(it)                  # [12]
+list(it)                  # []</code></pre>
+<p><code>list(it)</code> asks for every <em>remaining</em> value. It consumes the iterator as it builds a new list. Calling it a second time gives an empty list because the bookmark is already at the end. To start again, create a new iterator from the original reusable container.</p>
+<p>Calling <code>next</code> after the end raises <code>StopIteration</code>. That is the standard end signal, not a special value such as 0 or None: either of those could be a legitimate item. <code>next(it, default)</code> is a useful explicit form that returns the supplied default instead of raising when exhausted. Choose a default that cannot be confused with an allowed item.</p>
+<pre><code>empty = iter([])
+next(empty, 'finished')    # 'finished'
+next(empty, 'finished')    # 'finished'</code></pre>
+<p>A list is iterable but is not itself an iterator: <code>next(numbers)</code> raises TypeError. First call <code>iter(numbers)</code>. An iterator is also iterable, but calling <code>iter(it)</code> returns the <em>same iterator</em>; it does not rewind or copy its position.</p>
+<pre><code>values = [10, 20, 30]
+a = iter(values)
+b = iter(values)           # independent bookmark
+alias = a                  # same bookmark as a
+next(a)                    # 10
+next(alias)                # 20
+next(b)                    # 10
+iter(a) is a               # True
+list(a)                    # [30]</code></pre>
+<details><summary>Self-check: does next flatten a nested list?</summary><p>No. It returns one top-level item. If the next item is a list, that whole list is returned. Iterating over its contents would require a separate iteration.</p></details>
+<p class="key">Track the object and its position separately: two names can share one iterator; two calls to iter on a list create independent iterators.</p></section>
+
+<section id="iterator-dictionaries"><h2>2. Dictionary views choose which information you visit</h2>
+<p>Iterating over a dictionary directly visits its keys. <code>d.keys()</code>, <code>d.values()</code>, and <code>d.items()</code> provide iterable views of keys, values, or key/value tuples. A view is not a copied list. Calling iter on a view gives an iterator with its own position.</p>
+<pre><code>stock = {'tea': 4, 'rice': 8}
+list(stock)                # ['tea', 'rice']
+list(stock.values())       # [4, 8]
+list(stock.items())        # [('tea', 4), ('rice', 8)]
+for name, amount in stock.items():
+    print(name, amount)
+# tea 4
+# rice 8</code></pre>
+<p>The two variables unpack each pair: name receives the key and amount receives its associated value. It is one loop, not a loop over all possible key/value combinations. You may instead loop over keys and read <code>stock[name]</code>, just as in your earlier dictionary comprehensions.</p>
+<p>In this workbook's Python 3.12, dictionary order is insertion order. Assigning a new value to an existing key keeps its position; adding a new key puts it at the end. The video's historical comment about older Python versions does not change this workbook's rule. Insertion order became a language guarantee in Python 3.7.</p>
+<pre><code>prices = {'lamp': 11, 'mat': 7}
+view = prices.values()
+prices['lamp'] = 13
+list(view)                 # [13, 7]
+prices['cup'] = 3
+list(prices)               # ['lamp', 'mat', 'cup']</code></pre>
+<p>A view reflects its dictionary's current contents. Updating an existing key's value is different from adding or deleting a key. Changing dictionary size while using an existing iterator can raise RuntimeError. Do not build a solution that relies on continuing such an iterator. If keys must be added or removed, first make a snapshot with <code>list(d)</code>, then loop over that separate list.</p>
+<details><summary>Self-check: is list(d.values()) still a live view?</summary><p>No. It is a newly built list containing the values encountered during consumption. Later dictionary assignments do not replace entries in that list. Mutable objects stored as values can still be shared; materialization is not a deep copy.</p></details></section>
+
+<section id="iterator-loops"><h2>3. A for loop advances an iterator too</h2>
+<p>A for loop obtains an iterator and repeatedly requests its next value until exhaustion. Python handles the StopIteration signal for you. A reusable container supplies a fresh iterator for a later loop; an iterator supplies itself, so a later loop begins at its current position.</p>
+<pre><code>span = range(2, 5)
+list(span)                 # [2, 3, 4]
+list(span)                 # [2, 3, 4]
+cursor = iter(span)
+next(cursor)               # 2
+for value in cursor:
+    print(value)
+# 3
+# 4
+list(cursor)               # []</code></pre>
+<p>Stopping a loop early leaves the rest available. This is useful when a function should consume only a prefix. Returning from inside a loop ends that function immediately; it does not secretly finish consuming the iterator.</p>
+<pre><code>cursor = iter([4, 8, 15, 16])
+for value in cursor:
+    if value == 8:
+        break
+next(cursor)               # 15</code></pre>
+<p>Notice that 8 was consumed before the loop tested it. Finding a matching value normally consumes that matching value too. A correct return value is only half the contract when the caller also needs the iterator's remaining suffix.</p>
+<details><summary>Self-check: can if cursor tell whether another item exists?</summary><p>No. Iterator truthiness does not generally report exhaustion. Use a for loop, next with an appropriate default, or an explicitly taught exception-handling pattern. Do not use list(cursor) merely to check: that consumes everything.</p></details></section>
+
+<section id="iterator-lazy"><h2>4. Lazy built-ins delay the work</h2>
+<p><code>map(function, source)</code> returns an iterator of transformed values. <code>filter(predicate, source)</code> returns an iterator of original values for which the predicate is true. Creating either pipeline does not run the mapping or filtering callbacks on all its elements. The work happens when a consumer requests results.</p>
+<pre><code>def announce(x):
+    print('using', x)
+    return x + 10
+
+mapped = map(announce, [1, 4, 7])  # prints nothing
+next(mapped)
+# using 1
+# 11
+list(mapped)
+# using 4
+# using 7
+# [14, 17]</code></pre>
+<p>In this interactive transcript, the last number or list is the expression's returned value; lines beginning with “using” were printed by the callback. A script needs print around an expression to display its return value.</p>
+<p>One output request may consume several inputs. A filter has to inspect and reject items until it finds its next match. Chaining a filter after a map preserves that on-demand behavior.</p>
+<pre><code>source = iter([2, 3, 5, 8])
+adjusted = map(lambda x: x + 1, source)
+selected = filter(lambda x: x % 2 == 0, adjusted)
+next(selected)             # 4: consumes 2 (reject 3), then 3 (keep 4)
+next(source)               # 5: the pipeline has not touched it yet
+list(selected)             # []: 8 becomes 9 and is rejected</code></pre>
+<p>Normally let the pipeline be the sole consumer of its source. The explicit next(source) above demonstrates shared state: taking an item directly removes it from what the pipeline will see later.</p>
+<p><code>list</code>, <code>tuple</code>, and <code>sorted</code> consume all remaining inputs to build containers. <code>sum</code> also consumes the remainder to compute its answer. They are useful when you need the full result, but using one inside a supposedly lazy function defeats its purpose. An iterator does not promise indexing, length, or rewind.</p>
+<details><summary>Self-check: does filtering return the predicate's True values?</summary><p>No. It returns source items whose predicate result is true. Filtering oddness over [4, 5, 7] produces 5 and 7, not True and True.</p></details></section>
+
+<section id="iterator-zip"><h2>5. Zip pairs positions; reversed supplies reverse order</h2>
+<p><code>zip(left, right)</code> returns an iterator of tuples pairing the first items, then the second items, and so on. By default it stops when the shortest input ends. It does not pad missing values or form every possible pair. More than two inputs produce tuples with more fields.</p>
+<pre><code>pairs = zip(['p', 'q', 'r'], [6, 8])
+next(pairs)                # ('p', 6)
+list(pairs)                # [('q', 8)]
+list(pairs)                # []
+list(zip([1, 2], [3, 4], [5]))  # [(1, 3, 5)]</code></pre>
+<p>For reusable input lists, unmatched items remain in the lists unchanged. With input iterators, do not assume zip leaves every unpaired item untouched: it requests inputs left to right while attempting a tuple. A value from an earlier input can be consumed before a later input reports exhaustion. This matters only when the caller inspects leftover iterator state.</p>
+<p><code>reversed(s)</code> returns a reverse iterator for a suitable sequence; it does not mutate the sequence and does not itself return a list. Comparing an iterator directly with a list does not compare their produced elements.</p>
+<pre><code>word = [2, 5, 2]
+backward = reversed(word)
+word == backward           # False
+list(backward) == word     # True
+list(backward)             # []</code></pre>
+<p>The Zip video checks palindromes by comparing co-indexed forward and backward elements. Converting both sides to lists is another option. If you materialize a reverse iterator, keep that resulting list when you need it again; a second conversion does not replay it.</p></section>
+
+<section id="iterator-sharing"><h2>6. Pass the same position between functions</h2>
+<p>The final video uses a dealt card deck to show why one shared iterator is useful: different parts of a program request the next card, and all continue from the same place. You do not need the card-game rules to understand the programming idea. The same design works for tickets, readings, or tasks.</p>
+<pre><code>def read_pair(stream):
+    return (next(stream), next(stream))
+
+tickets = iter(['red', 'blue', 'gold', 'green', 'white'])
+read_pair(tickets)         # ('red', 'blue')
+read_pair(tickets)         # ('gold', 'green')
+next(tickets)              # 'white'</code></pre>
+<p>No function needs a separate index. The iterator owns the current position, and every consumer advances that same object. It processes positions once; repeated equal values can still occur if the original source contains duplicates. Keeping a reference to the original container is different: recreating an iterator from that container starts another traversal.</p>
+<p>When designing an iterator function, state its contract before coding: does it return an iterator or a container? Is the input finite? How many values may it consume? What happens at exhaustion? Should it stop immediately after finding an answer? Tests should check remaining values and callback order as well as the final result.</p>
+<details><summary>Self-check: why not convert every input to a list first?</summary><p>That can eagerly consume values the caller still needs, run expensive callbacks early, and prevent bounded work on an unbounded stream. Iterator-based code can work across many representations without requiring random access.</p></details>
+<p class="key">An iterator is a shared, advancing position. Laziness decides when values are computed; consumption decides which positions are no longer available.</p></section>
+<p class="source-links">Sources: all six supplied videos, whose available English captions were retrieved and read. Historical ordering details are clarified using <a href="https://docs.python.org/3.12/library/stdtypes.html#mapping-types-dict">Python 3.12 dictionaries</a>; exhaustion defaults and zip consumption are checked against <a href="https://docs.python.org/3.12/library/functions.html">Python 3.12 built-ins</a>. The instructor's <a href="https://composingprograms.com/pages/42-implicit-sequences.html">Implicit Sequences</a> chapter provides additional context, but its older dictionary-order examples do not describe Python 3.12. Generator definitions with yield are a separate topic and are not required in this section.</p>
+<section><h2>Practice map</h2><p>Switch to <strong>Practice</strong> above. Each task targets a different decision; the expandable hints are there when you need them.</p><ol class="coverage-map"><li><strong>Trace shared and independent positions</strong> — iterators</li><li><strong>Take exactly n items</strong> — bounded consumption</li><li><strong>Stop at the first match</strong> — for consumes a stream</li><li><strong>Change dictionary size safely</strong> — dictionary iteration</li><li><strong>Return a lazy transform-and-filter pipeline</strong> — built-in iterator functions</li><li><strong>Zip aligned pairs</strong> — zip</li><li><strong>Pair forward and backward</strong> — reversed</li><li><strong>Two callers share one stream</strong> — using iterators</li></ol></section></article></main><script src="exercises-iterators.js"></script><script src="app.js?v=20261011"></script></body></html>

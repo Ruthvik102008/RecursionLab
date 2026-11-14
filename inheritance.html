@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inheritance &amp; special methods · Practice lab</title><meta name="description" content="7 distinct coding exercises, video lessons and clear notes for Inheritance &amp; special methods."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23172d42'/%3E%3Ctext x='5' y='23' fill='%238be0d2' font-size='23'%3E↻%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"><style>#notes details{padding:14px 18px;margin:20px 0;border:1px solid var(--line);border-radius:8px;background:white}#notes summary{cursor:pointer;font-weight:650}#notes .lesson-map{display:flex;flex-wrap:wrap;gap:10px}#notes .lesson-map a{padding:6px 12px;background:var(--pale);border-radius:6px}#notes .key{border-left:4px solid var(--accent);padding:12px 18px;background:var(--pale)}#notes section{scroll-margin-top:24px}#notes h3{font-size:19px}.practice-hint{margin:12px 0 20px;padding:10px 14px;border:1px solid var(--line);border-radius:7px}.practice-hint summary{cursor:pointer}.practice-hint p{margin:10px 0 0}</style></head>
+<body><header><div class="brand">↻ <strong>Recursion lab</strong></div><nav aria-label="Workbook views"><button id="practice-tab" aria-pressed="true">Practice</button><button id="notes-tab" aria-pressed="false">Your notes</button></nav><span id="runtime" role="status">Python loads when you run code</span></header><nav class="lesson-nav" aria-label="Lesson sets"><a href="foundations.html" data-lesson="foundations">Recursion foundations</a><a href="index.html" data-lesson="tree">Tree recursion &amp; partitions</a><a href="count-coins.html" data-lesson="coins">Q4 · Count Coins</a><a href="lists.html" data-lesson="lists">Lists &amp; sequences</a><a href="objects.html" data-lesson="objects">Objects &amp; types</a><a href="containers.html" data-lesson="containers">Containers</a><a href="linked-lists.html" data-lesson="linked-lists">Linked lists</a><a href="trees.html" data-lesson="trees">Trees</a><a href="mutation.html" data-lesson="mutation">Mutation</a><a href="oop.html" data-lesson="oop">Objects &amp; methods</a><a href="attributes.html" data-lesson="attributes">Attributes</a><a href="inheritance.html" data-lesson="inheritance" aria-current="page">Inheritance &amp; special methods</a><a href="iterators.html" data-lesson="iterators">Iterators</a><a href="efficiency.html" data-lesson="efficiency">Measuring efficiency</a></nav>
+<main id="practice"><aside><p class="eyebrow">4 VIDEOS · 7 CHALLENGES</p><h1>Inheritance &amp; special methods</h1><label for="exercise-select">Choose a coding problem</label><select id="exercise-select"></select><div id="exercise-list"></div></aside><section class="workspace"><div class="problem-heading"><span class="eyebrow" id="topic"></span><span id="progress"></span></div><h2 id="problem-title">01 · Inherit the behavior, change a default</h2><p id="prompt">Define SavingsAccount as a subclass of Account with interest 0.05. Inherit the initializer, deposit, and withdraw rather than redefining them. Keep the supplied definitions unchanged.</p><p class="constraint" id="constraint">Follow the approach specified in the prompt.</p><details class="practice-hint"><summary>Need a hint?</summary><p id="practice-hint"></p></details><div class="editor-top"><label for="code">Your Python code</label><span id="saved">Draft saved on this device</span></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" rows="13" aria-label="Your Python code">class Account:
+    interest = 0.02
+    def __init__(self, holder):
+        self.holder = holder
+        self.balance = 0
+    def deposit(self, amount):
+        self.balance += amount
+        return self.balance
+    def withdraw(self, amount):
+        if amount &gt; self.balance:
+            return &#x27;Insufficient funds&#x27;
+        self.balance -= amount
+        return self.balance
+
+# --- Your work below ---
+class SavingsAccount(Account):
+    # Write your solution here.
+    pass
+</textarea><div class="actions"><button class="primary" id="test">Check work</button><button id="stop" disabled>Stop</button><span id="shortcut">Ctrl / ⌘ + Enter to test</span></div><section class="feedback" aria-live="polite"><h3 id="result-title">Ready for your first attempt</h3><p id="result-message">Write a solution, then test it. Feedback gives you a direction, never the implementation.</p><div id="results"></div></section><div class="try-grid"><section><label for="doctests">Editable doctests</label><p class="field-help">Add calls after &gt;&gt;&gt; and the expected output on the next line. Core checks still run.</p><textarea id="doctests" spellcheck="false" rows="9"></textarea></section><section><label for="scratch">Try your own inputs</label><p class="field-help">Call your functions or print intermediate results. The final expression is displayed.</p><textarea id="scratch" spellcheck="false" rows="5"></textarea><button id="run">Run input</button><pre id="scratch-output" aria-live="polite">Your output appears here.</pre></section></div></section></main><main id="notes" hidden><article id="notes-content"><p class="notes-download"><a href="inheritance-notes.md" download>Download these notes</a></p><h1>Inheritance, object-oriented design, and special methods</h1>
+<p>You already know how to create an instance and write a method. Now connect related classes, reuse existing behavior, and follow attribute lookup when several definitions compete. These four videos cover inheritance and design; the final, clearly marked supplement introduces a few special methods from the instructor's textbook. Run the worked examples in order: later examples use classes defined earlier.</p>
+<nav class="lesson-map" aria-label="Inheritance lesson map"><a href="#inheritance-basics">1 · Inheritance</a><a href="#inheritance-design">2 · Design and composition</a><a href="#inheritance-multiple">3 · Multiple inheritance</a><a href="#inheritance-lookup">4 · Lookup practice</a><a href="#inheritance-special">Supplement · Special methods</a></nav>
+<table><thead><tr><th>Video</th><th>New idea</th></tr></thead><tbody>
+<tr><td><a href="https://www.youtube.com/watch?v=Bqpe1iyq5vE" target="_blank" rel="noopener">Inheritance</a></td><td>Inherited behavior, overrides, and base-method reuse</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=tULG0_WfbgU" target="_blank" rel="noopener">Object-Oriented Design</a></td><td>Composition, class-valued arguments, and coordinated objects</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=rpVwO64Iqps" target="_blank" rel="noopener">Multiple Inheritance</a></td><td>Combining behavior from two related base classes</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=qFvC4SwbG4A" target="_blank" rel="noopener">Attribute Lookup Practice</a></td><td>Inherited initialization, overridden methods, and object chains</td></tr>
+</tbody></table>
+
+<section id="inheritance-basics">
+<h2>1 · Specify what changes; inherit the rest</h2>
+<p><code>class Child(Parent):</code> makes Child a subclass of Parent. An inherited method is available without copying its definition. Defining the same name in Child overrides the inherited name. If Child has no initializer, lookup can find Parent's initializer. The receiver is still a Child instance.</p>
+<pre><code>class Parcel:
+    rate = 3
+    def __init__(self, weight):
+        self.weight = weight
+    def quote(self):
+        return self.weight * self.rate
+    def add_weight(self, amount):
+        self.weight += amount
+        return self.weight
+
+class CarefulParcel(Parcel):
+    rate = 4
+    extra_weight = 1
+    def add_weight(self, amount):
+        return Parcel.add_weight(self, amount + self.extra_weight)
+
+careful = CarefulParcel(2)
+print(careful.quote())          # 8
+print(careful.add_weight(2))    # 5
+print(careful.quote())          # 20</code></pre>
+<p>CarefulParcel inherits initialization and quote. Its quote uses the inherited function, but <code>self.rate</code> finds CarefulParcel's rate. The overridden add_weight adjusts the amount and reuses the original implementation. Looking up a function on the class, as in <code>Parcel.add_weight</code>, does not supply the receiver automatically: pass self explicitly.</p>
+<p>For these ordinary attributes, search the instance first, then its class, then base classes. An assignment to an instance attribute does not change the class attribute. An inherited name is looked up when needed; base definitions are not copied into each subclass.</p>
+<pre><code>careful.extra_weight = 0
+print(careful.add_weight(1))    # 6
+print(CarefulParcel.extra_weight)  # 1
+Parcel.rate = 5
+plain = Parcel(2)
+print(plain.quote())            # 10
+print(careful.quote())          # 24</code></pre>
+<p>Plain sees Parcel's changed rate. Careful still finds rate 4 in its own class. Prefer <code>self.extra_weight</code> over hard-coding 1: it respects both a more specialized subclass and an instance-specific override.</p>
+<details><summary>Self-check: why not call self.add_weight inside this override?</summary><p>That lookup finds the same override again and recursively calls it. Calling Parcel.add_weight(self, ...) deliberately chooses the base implementation while keeping the current object as its receiver.</p></details>
+<p class="key">Takeaway: separate where a method is found from which object becomes self. An inherited method still works on the actual subclass instance.</p>
+</section>
+
+<section id="inheritance-design">
+<h2>2 · A specialized thing is-a; a manager has-a collection</h2>
+<p>A careful parcel is a parcel, so inheritance expresses that relationship. A depot has parcels; it is not a parcel itself. Composition stores the related objects in attributes. You used object-valued attributes before; the new design step is coordinating a collection through each object's own methods.</p>
+<pre><code>class Depot:
+    def __init__(self):
+        self.parcels = []
+    def accept(self, weight, kind=Parcel):
+        package = kind(weight)
+        self.parcels.append(package)
+        return package
+    def quotes(self):
+        return [package.quote() for package in self.parcels]
+    def load_all(self, amount):
+        for package in self.parcels:
+            package.add_weight(amount)
+
+depot = Depot()
+regular = depot.accept(2)
+fragile = depot.accept(2, CarefulParcel)
+print(depot.quotes())          # [10, 8]
+print(depot.parcels[1] is fragile)  # True
+depot.load_all(1)
+print(depot.quotes())          # [15, 16]
+print(len(Depot().parcels))     # 0</code></pre>
+<p>Classes are values, so kind can refer to Parcel or CarefulParcel. Calling <code>kind(weight)</code> constructs the chosen kind. Pass the class, not an already-created instance. Accept remembers and returns that exact new object, allowing the caller and depot to reach the same parcel.</p>
+<p>The load_all loop does not need a separate type check for careful parcels. Calling each package's method selects its appropriate behavior. Similarly, the video's bank pays interest using each account's own rate and deposit method. An overridden deposit can therefore affect what happens even during interest payment.</p>
+<p>Give every depot its own collection during initialization. A shared collection would incorrectly mix parcels from different depots. Avoid copying a whole base method just to change one small rule; reuse the existing implementation so future fixes remain shared.</p>
+<details><summary>Self-check: why did fragile gain two units when load_all received 1?</summary><p>It is a different CarefulParcel from the earlier careful variable. Its extra_weight still comes from the class and equals 1. Its override adds the requested 1 plus that extra 1.</p></details>
+<p class="key">Takeaway: choose inheritance for specialization and composition for ownership. Let each contained object's methods handle its own rules.</p>
+</section>
+
+<section id="inheritance-multiple">
+<h2>3 · Combine two specializations</h2>
+<p>Python allows more than one base class. The video combines checking-account withdrawal behavior with savings-account deposit behavior. Both specialize the same Account base. The combined class can supply its own starting state while inheriting different methods from its two parents.</p>
+<pre><code>class LabeledParcel(Parcel):
+    label_fee = 2
+    def quote(self):
+        return Parcel.quote(self) + self.label_fee
+
+class BundleParcel(CarefulParcel, LabeledParcel):
+    def __init__(self, weight):
+        self.weight = weight
+
+bundle = BundleParcel(1)
+print(bundle.quote())          # 6
+print(bundle.add_weight(2))    # 4
+print(bundle.quote())          # 18</code></pre>
+<p>In this particular diamond, the class lookup order is BundleParcel, CarefulParcel, LabeledParcel, Parcel, then object. Quote comes from LabeledParcel; add_weight comes from CarefulParcel. The shared Parcel base comes after both specializations. Do not search all the way through Parcel before considering LabeledParcel.</p>
+<p>Quote eventually calls Parcel.quote on the same bundle. That base function uses <code>self.rate</code>, which finds CarefulParcel's 4. Thus the initial quote is <code>1 * 4 + 2</code>. After the extra weight is included, it is <code>4 * 4 + 2</code>.</p>
+<p>Defining the combined initializer replaces inherited initialization; Python does not automatically run every parent's initializer as well. Our example explicitly sets the needed weight. The video's combined account similarly supplies its holder and special initial balance.</p>
+<details><summary>Self-check: does choosing Parcel.quote turn bundle into a Parcel?</summary><p>No. It chooses a function implementation, not a replacement receiver. Self remains bundle, so instance and subclass overrides can still affect attributes read inside that function.</p></details>
+<p class="key">Takeaway: trace the defined lookup order for the given hierarchy. These examples require a simple diamond, not the algorithm for arbitrary multiple-inheritance graphs.</p>
+</section>
+
+<section id="inheritance-lookup">
+<h2>4 · Trace construction before following dots</h2>
+<p>The final video combines three levels of inheritance with objects stored inside other objects. An initializer inherited from a base class can invoke a method overridden in the actual subclass. Write down each new instance separately, then record its own attributes.</p>
+<pre><code>class Seed:
+    number = 9
+    def choose(self, n):
+        return WrappedSeed(n - 1)
+
+class WrappedSeed(Seed):
+    count = 3
+    def __init__(self, n):
+        if n:
+            self.next = self.choose(n)
+        else:
+            self.next = DirectSeed(1)
+
+class DirectSeed(WrappedSeed):
+    def choose(self, n):
+        return n
+
+root = WrappedSeed(1)
+root.count = 8
+print(DirectSeed(2).count)       # 3
+print(Seed.number == DirectSeed.number)  # True
+print(root.next.next.next)      # 1
+print(root.count, WrappedSeed.count)  # 8 3</code></pre>
+<p>Root's next is a WrappedSeed initialized with 0. That object's next is a DirectSeed initialized with 1. DirectSeed inherits the initializer, but <code>self.choose(1)</code> uses DirectSeed's override, so its next is the integer 1. Three next lookups reach that integer; another next would be an error.</p>
+<p>For each dot, finish the expression on its left before searching for the name on its right. Distinguish an attribute found on the instance from one inherited through classes. Changing root.count affects root only; it does not rewrite WrappedSeed.count.</p>
+<details><summary>Self-check: why does DirectSeed(2).count return 3 rather than 2?</summary><p>The initializer stores 2 as next. It does not create a count attribute. Lookup finds count in WrappedSeed, where its value is 3. Attribute names matter independently of their numerical values.</p></details>
+<p class="key">Takeaway: track object identity, construction, and attribute names separately. Follow one completed lookup at a time.</p>
+</section>
+
+<section id="inheritance-special">
+<h2>Supplement · Let familiar syntax call special methods</h2>
+<p>The four supplied clips do not teach a special-method lesson. This short extension comes from the instructor's <a href="https://composingprograms.com/3ed/object-abstraction/" target="_blank" rel="noopener">Object Abstraction chapter</a>, included because you requested special methods. These methods connect class behavior to built-in operations.</p>
+<table><thead><tr><th>Operation</th><th>Method</th><th>Return</th></tr></thead><tbody><tr><td><code>repr(x)</code></td><td><code>__repr__(self)</code></td><td>A useful representation string</td></tr><tr><td><code>str(x)</code>, <code>print(x)</code></td><td><code>__str__(self)</code></td><td>A readable string</td></tr><tr><td><code>x + y</code></td><td><code>__add__(self, other)</code></td><td>The addition result</td></tr></tbody></table>
+<pre><code>class Milestone:
+    def __init__(self, name, distance):
+        self.name = name
+        self.distance = distance
+    def __repr__(self):
+        return f'Milestone({self.name!r}, {self.distance})'
+    def __str__(self):
+        return self.name + ': ' + str(self.distance) + ' km'
+
+marker = Milestone('Gate', 2)
+print(str(marker))             # Gate: 2 km
+print(repr(marker))            # Milestone('Gate', 2)
+print([marker])                # [Milestone('Gate', 2)]</code></pre>
+<p>Return the string; do not print inside these methods. The f-string conversion <code>!r</code> inserts the field's repr, including appropriate quotes. Containers use their items' repr. A reconstructible representation does not automatically define equality between two instances.</p>
+<pre><code>class Distance:
+    def __init__(self, km):
+        self.km = km
+    def __add__(self, other):
+        return Distance(self.km + other.km)
+
+short = Distance(2)
+long = Distance(5)
+combined = short + long
+print(combined.km)             # 7
+print(short.km, long.km)        # 2 5
+print(combined is short)       # False</code></pre>
+<p>This example assumes two Distance operands. Addition creates a fresh result rather than changing either input. In practice, check <code>isinstance(other, Distance)</code> first. If it is false, <code>return NotImplemented</code> lets Python try the other operand’s supported operation and ultimately raise TypeError if neither type supports the pair. NotImplemented is a special value, not an exception and not the same as NotImplementedError. The Vector practice uses this small guard; more advanced arithmetic dispatch is outside this supplement.</p>
+<details><summary>Self-check: will returning the number 7 from __str__ work?</summary><p>No. Both __str__ and __repr__ must return strings. Convert numerical fields when building their text.</p></details>
+<p class="key">Takeaway: special methods implement behavior for existing syntax. Check exact return types as well as visible output.</p>
+</section>
+<p class="source-note">Sources: all four supplied English transcripts were retrieved and read. Inheritance was also cross-checked against <a href="https://cs61a.org/fa26/assets/lec/21-Inheritance.pdf" target="_blank" rel="noopener">the instructor's slides</a>. The labeled special-method supplement uses <a href="https://composingprograms.com/3ed/object-abstraction/" target="_blank" rel="noopener">Composing Programs</a> and <a href="https://docs.python.org/3.12/reference/datamodel.html" target="_blank" rel="noopener">Python's data model reference</a>; it is not attributed to the four clips.</p>
+<section><h2>Practice map</h2><p>Switch to <strong>Practice</strong> above. Each task targets a different decision; the expandable hints are there when you need them.</p><ol class="coverage-map"><li><strong>Inherit the behavior, change a default</strong> — inheritance</li><li><strong>Extend a parent method with a fee</strong> — overriding</li><li><strong>An inherited initializer calls your override</strong> — lookup through self</li><li><strong>A bank contains accounts</strong> — composition</li><li><strong>Combine two parents deliberately</strong> — multiple inheritance</li><li><strong>Two useful string representations</strong> — special methods · supplement</li><li><strong>Teach + to combine objects</strong> — special methods · supplement</li></ol></section></article></main><script src="exercises-inheritance.js"></script><script src="app.js?v=20261011"></script></body></html>

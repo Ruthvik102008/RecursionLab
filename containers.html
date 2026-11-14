@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Containers · Practice lab</title><meta name="description" content="20 checked coding exercises and clear notes for Containers."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23172d42'/%3E%3Ctext x='5' y='23' fill='%238be0d2' font-size='23'%3E↻%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"><style>#notes details{padding:14px 18px;margin:20px 0;border:1px solid var(--line);border-radius:8px;background:white}#notes summary{cursor:pointer;font-weight:650}#notes .lesson-map{display:flex;flex-wrap:wrap;gap:10px}#notes .lesson-map a{padding:6px 12px;background:var(--pale);border-radius:6px}#notes .key{border-left:4px solid var(--accent);padding:12px 18px;background:var(--pale)}#notes section{scroll-margin-top:24px}#notes h3{font-size:19px}</style></head>
+<body><header><div class="brand">↻ <strong>Recursion lab</strong></div><nav aria-label="Workbook views"><button id="practice-tab" aria-pressed="true">Practice</button><button id="notes-tab" aria-pressed="false">Your notes</button></nav><span id="runtime" role="status">Python loads when you run code</span></header><nav class="lesson-nav" aria-label="Lesson sets"><a href="foundations.html" data-lesson="foundations">Recursion foundations</a><a href="index.html" data-lesson="tree">Tree recursion &amp; partitions</a><a href="count-coins.html" data-lesson="coins">Q4 · Count Coins</a><a href="lists.html" data-lesson="lists">Lists &amp; sequences</a><a href="objects.html" data-lesson="objects">Objects &amp; types</a><a href="containers.html" data-lesson="containers" aria-current="page">Containers</a><a href="linked-lists.html" data-lesson="linked-lists">Linked lists</a><a href="trees.html" data-lesson="trees">Trees</a><a href="mutation.html" data-lesson="mutation">Mutation</a><a href="oop.html" data-lesson="oop">Objects &amp; methods</a><a href="attributes.html" data-lesson="attributes">Attributes</a><a href="inheritance.html" data-lesson="inheritance">Inheritance &amp; special methods</a><a href="iterators.html" data-lesson="iterators">Iterators</a><a href="efficiency.html" data-lesson="efficiency">Measuring efficiency</a></nav>
+<main id="practice"><aside><p class="eyebrow">FIVE VIDEOS · 20 CHALLENGES</p><h1>Containers</h1><label for="exercise-select">Choose a coding problem</label><select id="exercise-select"></select><div id="exercise-list"></div></aside><section class="workspace"><div class="problem-heading"><span class="eyebrow" id="topic"></span><span id="progress"></span></div><h2 id="problem-title">01 · Follow three indexes</h2><p id="prompt">Return data[outer][inner][position]. Indices are valid. Follow the nesting one level at a time; do not flatten the structure.</p><p class="constraint" id="constraint">Follow the approach specified in the prompt.</p><div class="editor-top"><label for="code">Your Python code</label><span id="saved">Draft saved on this device</span></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" rows="13" aria-label="Your Python code">def nested_value(data, outer, inner, position):
+    # Write your solution here.
+    pass
+</textarea><div class="actions"><button class="primary" id="test">Check work</button><button id="stop" disabled>Stop</button><span id="shortcut">Ctrl / ⌘ + Enter to test</span></div><section class="feedback" aria-live="polite"><h3 id="result-title">Ready for your first attempt</h3><p id="result-message">Write a solution, then test it. Feedback gives you a direction, never the implementation.</p><div id="results"></div></section><div class="try-grid"><section><label for="doctests">Editable doctests</label><p class="field-help">Add calls after &gt;&gt;&gt; and the expected output on the next line. Core checks still run.</p><textarea id="doctests" spellcheck="false" rows="9"></textarea></section><section><label for="scratch">Try your own inputs</label><p class="field-help">Call your functions or print intermediate results. The final expression is displayed.</p><textarea id="scratch" spellcheck="false" rows="5"></textarea><button id="run">Run input</button><pre id="scratch-output" aria-live="polite">Your output appears here.</pre></section></div></section></main><main id="notes" hidden><article id="notes-content"><p class="notes-download"><a href="containers-notes.md" download>Download these notes</a></p><h1>Containers: structure, selection, and aggregation</h1>
+<p>These five sections follow your five requested videos. The examples and exercises are written for this workbook. Work in groups of four, paying attention to the shape and type of each result.</p>
+<nav class="lesson-map" aria-label="Notes sections"><a href="#boxes">1. Boxes and pointers</a><a href="#slicing">2. Slicing</a><a href="#aggregation">3. Aggregation</a><a href="#strings">4. Strings</a><a href="#dictionaries">5. Dictionaries</a></nav>
+<table><tr><th>Your video</th><th>Useful moments</th><th>Practice</th></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=aSqOiUZg7kQ" target="_blank" rel="noopener">Box-and-Pointer Notation</a></td><td>0:08 closure property · 1:09 list slots · 1:52 nesting</td><td>1–4</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=Y4L-4q52prk" target="_blank" rel="noopener">Slicing</a></td><td>0:46 slice notation · 1:17 omitted bounds · 1:55 new outer lists</td><td>5–8</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=omcBjDT6588" target="_blank" rel="noopener">Sequence Aggregation</a></td><td>0:31 sum · 2:35 max · 3:24 key functions · 4:32 all</td><td>9–12</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=FvSXDUUTbgE" target="_blank" rel="noopener">Strings</a></td><td>1:48 quotation styles · 2:48 escapes · 3:16 indexing · 4:03 substring membership</td><td>13–16</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=sflkoII6Sgs" target="_blank" rel="noopener">Dictionaries</a></td><td>0:25 pairs · 1:02 lookup · 2:10 values · 4:12 key restrictions · 6:09 comprehensions · 8:10 index example</td><td>17–20</td></tr></table>
+<section id="boxes"><h2>1. Draw an object for each list</h2>
+<p>A list can contain lists, whose elements can be lists again. This “combine the results again” property lets you express a hierarchy. A drawing needs both slots and connections: a name points to an outer list, and some slots refer to inner objects.</p>
+<pre><code>row = [6, 8]
+shared = [row, row]
+separate = [row[:], row[:]]</code></pre>
+<table><tr><th>Name</th><th>Outer slot 0 refers to</th><th>Outer slot 1 refers to</th></tr><tr><td>shared</td><td>The original row</td><td>The same original row</td></tr><tr><td>separate</td><td>A new copy</td><td>A different new copy</td></tr></table>
+<p>Both outer lists initially display <code>[[6, 8], [6, 8]]</code>. Equal displayed contents do not tell you whether objects are shared. <code>shared[0] is shared[1]</code> is True; the same expression for separate is False. <code>==</code> asks about equality; <code>is</code> asks about identity.</p>
+<p>Appending 10 to row changes both displayed entries in shared because both refer to row. It changes neither copy in separate. Appending another row to shared changes only its outer structure.</p>
+<details><summary>Self-check: how many outer elements are in [[[]], [1, 2]]?</summary><p>Two. Each inner list occupies one outer slot. Work one nesting level at a time.</p></details></section>
+<section id="slicing"><h2>2. A slice selects a range of positions</h2>
+<pre><code>s = [10, 20, 30, 40, 50]
+s[1:4]                           # [20, 30, 40]
+s[:2]                            # [10, 20]
+s[3:]                            # [40, 50]
+s[:]                             # same elements, new outer list
+s[4:2]                           # []</code></pre>
+<p>The start is included and the stop is excluded. An omitted start means the beginning; an omitted stop means the end. A slice may be empty. Indexing one missing position raises IndexError, while slicing beyond an endpoint clips to what is available.</p>
+<p>A list slice creates a new <strong>outer list</strong>, preserving references to inner elements. It is a shallow copy. In <code>rows = [[2], [9]]; copied = rows[:]</code>, <code>copied is rows</code> is False, but <code>copied[0] is rows[0]</code> is True. Replacing an outer slot differs from changing the inner object that slot refers to.</p>
+<details><summary>Self-check: why does s[-0:] return everything?</summary><p>-0 equals 0, so the slice starts at the beginning. A function requesting the last zero items must handle that case explicitly.</p></details>
+<p class="key">Practice 5–8 checks both contents and the copy behavior requested in each prompt.</p></section>
+<section id="aggregation"><h2>3. Many values become one result</h2>
+<table><tr><th>Operation</th><th>Example</th><th>Empty input</th></tr><tr><td>sum</td><td><code>sum([3, 7], 20)</code> → 30</td><td>Returns the start (default 0)</td></tr><tr><td>max/min</td><td><code>max([3, 7])</code> → 7</td><td>Raises ValueError unless an iterable-call default is supplied</td></tr><tr><td>all</td><td>Every condition is truthy</td><td>True</td></tr><tr><td>any</td><td>At least one condition is truthy</td><td>False</td></tr></table>
+<p>Compare <code>all([-2, 4])</code>, which is True because both numbers are nonzero, with <code>all(x &gt; 0 for x in [-2, 4])</code>, which is False. Aggregate the <em>condition</em> when the question concerns a condition.</p>
+<pre><code>names = ['oak', 'willow', 'pine']
+max(names, key=len)               # 'willow', not 6
+all(len(name) &gt;= 3 for name in names)  # True</code></pre>
+<p>A key function computes comparison scores. max returns an original item, using the first encountered item when scores tie. Concatenating lists with <code>sum(rows, [])</code> is a useful teaching example; it repeatedly copies growing intermediate lists, so it is not a good large-data flattening method.</p>
+<details><summary>Self-check: why is all([]) True?</summary><p>There is no element violating the rule. By contrast, any([]) is False because there is no element satisfying it.</p></details></section>
+<section id="strings"><h2>4. Text is a sequence with its own rules</h2>
+<p>Single and double quotes create the same kind of string. Triple quotes can span lines. An escape such as <code>\n</code> represents one newline character. A string that looks numeric remains text until explicitly converted.</p>
+<pre><code>message = 'sun\nrain'
+len(message)                     # 8: 3 + 1 newline + 4
+message[0]                       # 's': still a string
+message[:3]                      # 'sun'
+'un' in message                  # True: a substring
+'un' in ['sun', 'rain']           # False: no whole element 'un'
+float('2.75') + 1                # 3.75</code></pre>
+<p><code>repr(message)</code> shows quote and escape notation, while <code>print(message)</code> displays the actual line break. Returning a string and printing it are different contracts. In doctests, a bare string expression displays its representation; print displays its characters without surrounding quotes.</p>
+<p>String indexing returns a one-character string. Membership checks contiguous substrings, including the empty substring. Strings are immutable: changing a character requires constructing new text rather than assigning to <code>text[i]</code>. A string containing Python code is still data unless explicitly executed; none of these exercises needs exec.</p>
+<details><summary>Self-check: is 'ct' in 'cat'?</summary><p>False. Those letters occur, but not consecutively. Membership does not ask about a scattered subsequence.</p></details></section>
+<section id="dictionaries"><h2>5. Keys choose values</h2>
+<pre><code>stock = {'paper': 12, 'ink': 0}
+stock['paper']                   # 12
+'ink' in stock                   # True, even though its value is zero
+12 in stock                      # False: membership checks keys
+list(stock)                      # ['paper', 'ink']
+sum(stock.values())              # 12</code></pre>
+<p>A dictionary is a mapping and an iterable of keys; it is not a position-indexed sequence like a list. Its values may themselves be lists or dictionaries. Each key has one associated value. Assigning the same key again replaces that value; representing several associated items requires storing a collection as the value.</p>
+<p>Keys must be hashable. Strings and integers work; lists and dictionaries do not. A tuple works only if its elements are hashable too. A missing bracket lookup raises KeyError. <code>d.get(key, fallback)</code> returns fallback only if the key is absent, preserving stored falsy values.</p>
+<pre><code>lengths = {word: len(word) for word in ['elm', 'maple']}
+# {'elm': 3, 'maple': 5}
+
+# A separate list for each key:
+groups = {letter: [word for word in ['elm', 'ash', 'alder']
+                   if word.startswith(letter)]
+          for letter in ['a', 'e', 'z']}
+# {'a': ['ash', 'alder'], 'e': ['elm'], 'z': []}</code></pre>
+<p>The outer comprehension chooses the key. The inner one creates its matching-value list. Even a key with no matches gets an empty list. Dictionary iteration preserves insertion order.</p>
+<details><summary>Self-check: why is d[key] or fallback a flawed lookup?</summary><p>A present value such as 0 would be replaced by fallback, and an absent key would raise an error before or could help. Check presence or use get.</p></details></section>
+<p class="source-links">Further reference: <a href="https://docs.python.org/3.12/library/typing.html">Python type hints</a>, <a href="https://docs.python.org/3.12/library/dataclasses.html">data classes</a>, <a href="https://docs.python.org/3.12/library/stdtypes.html">built-in types</a>, and <a href="https://docs.python.org/3.12/library/functions.html">built-in functions</a>.</p></article></main><script src="exercises-containers.js"></script><script src="app.js?v=20261011"></script></body></html>

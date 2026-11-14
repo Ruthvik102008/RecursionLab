@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Objects &amp; types · Practice lab</title><meta name="description" content="16 checked coding exercises and clear notes for Objects & types."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23172d42'/%3E%3Ctext x='5' y='23' fill='%238be0d2' font-size='23'%3E↻%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"><style>#notes details{padding:14px 18px;margin:20px 0;border:1px solid var(--line);border-radius:8px;background:white}#notes summary{cursor:pointer;font-weight:650}#notes .lesson-map{display:flex;flex-wrap:wrap;gap:10px}#notes .lesson-map a{padding:6px 12px;background:var(--pale);border-radius:6px}#notes .key{border-left:4px solid var(--accent);padding:12px 18px;background:var(--pale)}#notes section{scroll-margin-top:24px}#notes h3{font-size:19px}</style></head>
+<body><header><div class="brand">↻ <strong>Recursion lab</strong></div><nav aria-label="Workbook views"><button id="practice-tab" aria-pressed="true">Practice</button><button id="notes-tab" aria-pressed="false">Your notes</button></nav><span id="runtime" role="status">Python loads when you run code</span></header><nav class="lesson-nav" aria-label="Lesson sets"><a href="foundations.html" data-lesson="foundations">Recursion foundations</a><a href="index.html" data-lesson="tree">Tree recursion &amp; partitions</a><a href="count-coins.html" data-lesson="coins">Q4 · Count Coins</a><a href="lists.html" data-lesson="lists">Lists &amp; sequences</a><a href="objects.html" data-lesson="objects" aria-current="page">Objects &amp; types</a><a href="containers.html" data-lesson="containers">Containers</a><a href="linked-lists.html" data-lesson="linked-lists">Linked lists</a><a href="trees.html" data-lesson="trees">Trees</a><a href="mutation.html" data-lesson="mutation">Mutation</a><a href="oop.html" data-lesson="oop">Objects &amp; methods</a><a href="attributes.html" data-lesson="attributes">Attributes</a><a href="inheritance.html" data-lesson="inheritance">Inheritance &amp; special methods</a><a href="iterators.html" data-lesson="iterators">Iterators</a><a href="efficiency.html" data-lesson="efficiency">Measuring efficiency</a></nav>
+<main id="practice"><aside><p class="eyebrow">FOUR VIDEOS · 16 CHALLENGES</p><h1>Objects &amp; types</h1><label for="exercise-select">Choose a coding problem</label><select id="exercise-select"></select><div id="exercise-list"></div></aside><section class="workspace"><div class="problem-heading"><span class="eyebrow" id="topic"></span><span id="progress"></span></div><h2 id="problem-title">01 · Read a date</h2><p id="prompt">Return (year, month, day) for the supplied datetime.date object. Use its named attributes.</p><p class="constraint" id="constraint">Follow the approach specified in the prompt.</p><div class="editor-top"><label for="code">Your Python code</label><span id="saved">Draft saved on this device</span></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" rows="13" aria-label="Your Python code">def date_parts(d):
+    # Write your solution here.
+    pass
+</textarea><div class="actions"><button class="primary" id="test">Check work</button><button id="stop" disabled>Stop</button><span id="shortcut">Ctrl / ⌘ + Enter to test</span></div><section class="feedback" aria-live="polite"><h3 id="result-title">Ready for your first attempt</h3><p id="result-message">Write a solution, then test it. Feedback gives you a direction, never the implementation.</p><div id="results"></div></section><div class="try-grid"><section><label for="doctests">Editable doctests</label><p class="field-help">Add calls after &gt;&gt;&gt; and the expected output on the next line. Core checks still run.</p><textarea id="doctests" spellcheck="false" rows="9"></textarea></section><section><label for="scratch">Try your own inputs</label><p class="field-help">Call your functions or print intermediate results. The final expression is displayed.</p><textarea id="scratch" spellcheck="false" rows="5"></textarea><button id="run">Run input</button><pre id="scratch-output" aria-live="polite">Your output appears here.</pre></section></div></section></main><main id="notes" hidden><article id="notes-content"><p class="notes-download"><a href="objects-notes.md" download>Download these notes</a></p><h1>Objects: data with useful behavior</h1>
+<p>Work through one section and its four problems at a time. These explanations and practice examples were written for this workbook after reading all four video transcripts. The practice problems are new applications, not a transcript or an answer key.</p>
+<nav class="lesson-map" aria-label="Notes sections"><a href="#objects">1. Objects</a><a href="#types">2. Working with types</a><a href="#hints">3. Type hints</a><a href="#records">4. Data classes</a></nav>
+<table><tr><th>Your video</th><th>Useful moments</th><th>Practice</th></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=Q-CewobDFZM" target="_blank" rel="noopener">Objects</a></td><td>0:14 dates · 1:29 attributes · 2:21 methods · 3:44 data and behavior</td><td>1–4</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=GBgyDCENCS0" target="_blank" rel="noopener">Working with Types</a></td><td>0:00 inspection · 0:21 isinstance · 0:55 conversion</td><td>5–8</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=g2DiXOsGdfM" target="_blank" rel="noopener">Type Hints</a></td><td>0:12 annotations · 1:13 unions · 1:48 aliases · 2:15 generics · 4:38 static checking</td><td>9–12</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=fdBjVdConb4" target="_blank" rel="noopener">Data Classes</a></td><td>0:24 named parts · 3:34 dataclass · 5:50 display behavior · 6:58 __str__</td><td>13–16</td></tr></table>
+<section id="objects"><h2>1. An object represents something</h2>
+<p>A date is more useful than three unrelated numbers: it knows which pieces are its year, month, and day, and can calculate a difference from another date. An <strong>attribute</strong> is a named part accessed through a dot. A <strong>method</strong> is behavior you call through a dot.</p>
+<pre><code>from datetime import date
+departure = date(2028, 6, 4)
+arrival = date(2028, 6, 9)
+departure.month                  # 6: stored information
+departure.isoformat()            # '2028-06-04': method result
+duration = arrival - departure
+duration.days                    # 5</code></pre>
+<p>Read <code>departure.month</code> as “ask this date for its month.” Read <code>departure.isoformat()</code> as “ask this date to produce a display string.” The parentheses perform the call. An expression before the dot is evaluated first; <code>(arrival - departure).days</code> asks the resulting duration for its days.</p>
+<p>A <strong>class</strong> describes a kind of object. Calling <code>date(...)</code> constructs an instance of that class. Classes are also values: you can pass <code>date</code> or <code>int</code> to another function, just as you can pass a number.</p>
+<details><summary>Self-check: why does departure.month() fail?</summary><p>The month attribute holds an integer, not a callable method. The dot retrieves a value; parentheses attempt to call that value.</p></details>
+<p class="key">Practice 1–4: distinguish retrieving information, calling behavior, and constructing a value. The type of an intermediate result tells you what operations make sense next.</p></section>
+<section id="types"><h2>2. Inspecting and converting do different jobs</h2>
+<table><tr><th>Expression</th><th>Question answered</th></tr><tr><td><code>type(value)</code></td><td>What exact class does this value have?</td></tr><tr><td><code>isinstance(value, float)</code></td><td>Is this a float instance, including a subclass?</td></tr><tr><td><code>float(value)</code></td><td>Can I construct a float from this value?</td></tr></table>
+<pre><code>text = '6.25'
+type(text)                       # str
+isinstance(text, float)           # False
+number = float(text)
+type(number)                     # float
+text                             # still '6.25'</code></pre>
+<p>Conversion returns a new result; it does not change what the original name refers to. Invalid numeric text raises <code>ValueError</code>. Converting a float with <code>int</code> truncates toward zero, so <code>int(-3.9)</code> is <code>-3</code>, not <code>-4</code>. Converting is not rounding.</p>
+<p>A subtle Python relationship: <code>isinstance(True, int)</code> is True because bool is a subclass of int. <code>type(True) is int</code> is False. Choose the test that matches the function’s contract.</p>
+<details><summary>Self-check: does type('12') calculate 12?</summary><p>No. It returns the class str. The explicit call int('12') constructs an integer.</p></details></section>
+<section id="hints"><h2>3. Type hints describe a contract</h2>
+<pre><code>def offset(x: int) -&gt; int:
+    return x + 2
+
+offset(4)                        # 6
+offset(1.5)                      # 3.5: Python still executes it</code></pre>
+<p>The annotation after a parameter names the intended input type. The arrow names the intended result type. Ordinary Python execution does not enforce these hints or convert inputs. A static type checker analyzes code separately and can flag inconsistencies. This workbook checks required annotation syntax on selected problems and runs behavioral tests; it does not run a full static type checker.</p>
+<p><code>str | float</code> permits either type. An alias such as <code>type Measurement = str | float</code> gives that union a name. It does not define a new runtime constructor called Measurement.</p>
+<pre><code># Python 3.12+ syntax used in the video and this workbook:
+type Measurement = str | float
+
+def unchanged[T](x: T) -&gt; T:
+    return x</code></pre>
+<p>One type variable used twice communicates a relationship: whichever type comes in also goes out. A union in each position merely lists allowed alternatives; it does not express the same relationship. A constrained variable, <code>def unchanged[T: (int, float)](x: T) -&gt; T:</code>, documents an int-to-int or float-to-float contract.</p>
+<details><summary>Self-check: can a correct annotation fix a wrong calculation?</summary><p>No. Documentation and runtime behavior need separate checks. A return annotation of int does not turn an incorrect returned string into an integer.</p></details>
+<p class="key">Practice 9–12 uses Python 3.12 syntax. Keep the requested annotations while implementing the behavior. Python loads on the first run and needs an internet connection.</p></section>
+<section id="records"><h2>4. Data classes give each part a name</h2>
+<p>With a list such as <code>['Dock', 7.5]</code>, you must remember what each position means. A small data class puts those names into the definition once.</p>
+<pre><code>from dataclasses import dataclass
+
+@dataclass
+class Parcel:
+    destination: str
+    weight: float
+
+p = Parcel(destination='Dock', weight=7.5)
+p.weight                         # 7.5
+type(p).__name__                  # 'Parcel'</code></pre>
+<p>The decorator supplies useful ordinary behavior, including a constructor, representation, and equality comparison. Field order determines positional constructor order. Keyword arguments make the intended field explicit. A default field, such as <code>insured: bool = False</code>, follows required fields.</p>
+<p>A method inside a class receives its instance as <code>self</code>. Special method <code>__str__</code> returns the readable string used by <code>str</code> and <code>print</code>. It must <em>return</em> a string, not print it and return None. The video assigns an existing formatting function to this special attribute; defining it in the class body installs the same kind of behavior.</p>
+<p>Field hints remain hints: the constructor does not reject a string merely because the field is annotated float. Validation is separate behavior you would have to implement when a contract requires it.</p>
+<details><summary>Self-check: what is the difference between Parcel and p?</summary><p>Parcel is a class. p is one instance storing a particular destination and weight. Another instance can store different values.</p></details>
+<p class="key">Practice 13–16: define records, use their named information, then give one record a readable display behavior.</p></section>
+<p class="source-links">Further reference: <a href="https://docs.python.org/3.12/library/typing.html">Python type hints</a>, <a href="https://docs.python.org/3.12/library/dataclasses.html">data classes</a>, <a href="https://docs.python.org/3.12/library/stdtypes.html">built-in types</a>, and <a href="https://docs.python.org/3.12/library/functions.html">built-in functions</a>.</p></article></main><script src="exercises-objects.js"></script><script src="app.js?v=20261011"></script></body></html>

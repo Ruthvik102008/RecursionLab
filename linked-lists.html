@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linked lists · Practice lab</title><meta name="description" content="20 checked coding exercises and clear notes for Linked lists."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23172d42'/%3E%3Ctext x='5' y='23' fill='%238be0d2' font-size='23'%3E↻%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"><style>#notes details{padding:14px 18px;margin:20px 0;border:1px solid var(--line);border-radius:8px;background:white}#notes summary{cursor:pointer;font-weight:650}#notes .lesson-map{display:flex;flex-wrap:wrap;gap:10px}#notes .lesson-map a{padding:6px 12px;background:var(--pale);border-radius:6px}#notes .key{border-left:4px solid var(--accent);padding:12px 18px;background:var(--pale)}#notes section{scroll-margin-top:24px}#notes h3{font-size:19px}</style></head>
+<body><header><div class="brand">↻ <strong>Recursion lab</strong></div><nav aria-label="Workbook views"><button id="practice-tab" aria-pressed="true">Practice</button><button id="notes-tab" aria-pressed="false">Your notes</button></nav><span id="runtime" role="status">Python loads when you run code</span></header><nav class="lesson-nav" aria-label="Lesson sets"><a href="foundations.html" data-lesson="foundations">Recursion foundations</a><a href="index.html" data-lesson="tree">Tree recursion &amp; partitions</a><a href="count-coins.html" data-lesson="coins">Q4 · Count Coins</a><a href="lists.html" data-lesson="lists">Lists &amp; sequences</a><a href="objects.html" data-lesson="objects">Objects &amp; types</a><a href="containers.html" data-lesson="containers">Containers</a><a href="linked-lists.html" data-lesson="linked-lists" aria-current="page">Linked lists</a><a href="trees.html" data-lesson="trees">Trees</a><a href="mutation.html" data-lesson="mutation">Mutation</a><a href="oop.html" data-lesson="oop">Objects &amp; methods</a><a href="attributes.html" data-lesson="attributes">Attributes</a><a href="inheritance.html" data-lesson="inheritance">Inheritance &amp; special methods</a><a href="iterators.html" data-lesson="iterators">Iterators</a><a href="efficiency.html" data-lesson="efficiency">Measuring efficiency</a></nav>
+<main id="practice"><aside><p class="eyebrow">FIVE VIDEOS · 20 CHALLENGES</p><h1>Linked lists</h1><label for="exercise-select">Choose a coding problem</label><select id="exercise-select"></select><div id="exercise-list"></div></aside><section class="workspace"><div class="problem-heading"><span class="eyebrow" id="topic"></span><span id="progress"></span></div><h2 id="problem-title">01 · One-element tuple</h2><p id="prompt">Return a tuple containing value as its only element. Use tuple syntax, not list syntax.</p><p class="constraint" id="constraint">Follow the approach specified in the prompt.</p><div class="editor-top"><label for="code">Your Python code</label><span id="saved">Draft saved on this device</span></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" rows="13" aria-label="Your Python code">def singleton(value):
+    # Write your solution here.
+    pass
+</textarea><div class="actions"><button class="primary" id="test">Check work</button><button id="stop" disabled>Stop</button><span id="shortcut">Ctrl / ⌘ + Enter to test</span></div><section class="feedback" aria-live="polite"><h3 id="result-title">Ready for your first attempt</h3><p id="result-message">Write a solution, then test it. Feedback gives you a direction, never the implementation.</p><div id="results"></div></section><div class="try-grid"><section><label for="doctests">Editable doctests</label><p class="field-help">Add calls after &gt;&gt;&gt; and the expected output on the next line. Core checks still run.</p><textarea id="doctests" spellcheck="false" rows="9"></textarea></section><section><label for="scratch">Try your own inputs</label><p class="field-help">Call your functions or print intermediate results. The final expression is displayed.</p><textarea id="scratch" spellcheck="false" rows="5"></textarea><button id="run">Run input</button><pre id="scratch-output" aria-live="polite">Your output appears here.</pre></section></div></section></main><main id="notes" hidden><article id="notes-content"><p class="notes-download"><a href="linked-lists-notes.md" download>Download these notes</a></p><h1>Linked lists: let each node handle one item</h1>
+<p>Your five-video set starts with tuples and container type hints. Those prepare the empty representation and recursive contract used by the linked-list lessons. These notes and new practice problems follow that sequence.</p>
+<nav class="lesson-map" aria-label="Notes sections"><a href="#tuples">1. Tuples</a><a href="#container-hints">2. Container hints</a><a href="#links">3. Linked lists</a><a href="#processing">4. Processing</a><a href="#mapping">5. Map and filter</a></nav>
+<table><tr><th>Your video</th><th>Useful moments</th><th>Practice</th></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=LbqHl278hcQ" target="_blank" rel="noopener">Tuples</a></td><td>0:21 sequences · 1:29 dictionary keys · 1:58 empty/singleton · 2:21 multiple assignment</td><td>1–4</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=qD9Ov87O7D8" target="_blank" rel="noopener">Container Type Hints</a></td><td>0:08 list items · 0:45 dictionaries · 1:03 tuples · 1:48 recursive nesting</td><td>5–8</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=7JNuEvE4M7Y" target="_blank" rel="noopener">Linked Lists</a></td><td>0:22 first/rest · 0:50 empty tuple · 2:42 Link dataclass · 4:38 access · 5:05 prepend</td><td>9–12</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=IqVO5QR8bBY" target="_blank" rel="noopener">Linked List Processing</a></td><td>0:04 empty guards · 1:30 indexing · 4:23 building · 5:51 extension · 7:26 sum · 9:25 range</td><td>13–16</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=IlnVbhKxWBw" target="_blank" rel="noopener">Example: Linked List Comprehension</a></td><td>0:12 filter/map pipeline · 2:10 mapping · 3:28 filtered rest · 4:49 composition</td><td>17–20</td></tr></table>
+<section id="tuples"><h2>1. Tuples bundle values</h2>
+<pre><code>pair = (7, 'north')
+pair[0]                          # 7
+pair[1:]                         # ('north',)
+empty = ()
+one = (7,)                       # a tuple
+grouped = (7)                    # just the integer 7</code></pre>
+<p>The comma makes a tuple. A function that appears to “return two values” actually returns one tuple containing two elements. Multiple assignment unpacks that tuple.</p>
+<pre><code>left, right = 4, 9
+left, right = right, left
+# The right side was (9, 4) before either name changed.
+# Now left is 9 and right is 4.</code></pre>
+<p>Tuples are immutable at the level of their slots. A tuple can still contain a mutable list, so immutability does not imply that every object reachable inside it is immutable. A tuple of integers can be a dictionary key, while a tuple containing a list cannot because the list is unhashable.</p>
+<details><summary>Self-check: does ([]) make an empty tuple?</summary><p>No. It groups an empty list expression. () is the empty tuple; ([],) is a one-element tuple containing an empty list.</p></details></section>
+<section id="container-hints"><h2>2. Describe what is inside</h2>
+<table><tr><th>Hint</th><th>Meaning</th></tr><tr><td><code>list[int]</code></td><td>A list of integers; no particular length</td></tr><tr><td><code>list[list[int]]</code></td><td>A list whose direct items are lists of integers</td></tr><tr><td><code>dict[str, list[int]]</code></td><td>String keys, integer-list values</td></tr><tr><td><code>tuple[str, int]</code></td><td>Exactly two positions: text, then integer</td></tr><tr><td><code>tuple[int, ...]</code></td><td>Any number of integer positions</td></tr><tr><td><code>tuple[()]</code></td><td>The empty tuple</td></tr></table>
+<p>A fixed number of nested list annotations cannot describe arbitrary depth. A recursive alias refers back to itself:</p>
+<pre><code># Python 3.12+:
+type Nested = int | list[Nested]
+example: Nested = [8, [4, [], [2]]]</code></pre>
+<p>Read it as “an integer, or a list of more values following this same rule.” The recursion belongs to the description; the example remains an ordinary runtime list. An annotation alone does not inspect the contents or reject a string hidden inside. Practice 8 separately asks you to implement that inspection.</p>
+<details><summary>Self-check: does list[int | list] forbid ['wrong'] deep inside?</summary><p>No. Bare list permits unspecified contents. To constrain every depth, the element rule must refer to the same recursive rule again.</p></details></section>
+<section id="links"><h2>3. A linked list is empty or first plus rest</h2>
+<p>In these lessons a nonempty linked list is a <code>Link</code> instance. The empty linked list is <code>()</code>. Each Link stores one item in <code>first</code>, and another <em>whole linked list</em> in <code>rest</code>.</p>
+<pre><code>from dataclasses import dataclass
+
+@dataclass
+class Link[T]:
+    first: T
+    rest: 'Link[T] | tuple[()]' = ()
+
+s = Link(8, Link(4, Link(2)))
+s.first                          # 8
+s.rest.first                     # 4
+s.rest.rest.first                # 2
+s.rest.rest.rest                 # ()</code></pre>
+<table><tr><th>Object</th><th>first</th><th>rest represents</th></tr><tr><td>s</td><td>8</td><td>The sequence 4, 2</td></tr><tr><td>s.rest</td><td>4</td><td>The sequence 2</td></tr><tr><td>s.rest.rest</td><td>2</td><td>Empty</td></tr></table>
+<p>The default rest lets <code>Link(2)</code> end a chain. A conceptual alias is <code>type LinkedList[T] = Link[T] | tuple[()]</code>; a Link is always nonempty, while a LinkedList may be empty. The scaffold uses the equivalent direct union inside a quoted forward reference.</p>
+<p><code>Link(6, s)</code> creates one new head and shares the existing s as its tail. It does not copy s. Rest should be a Link or (), rather than a number, an ordinary list, or None. The annotations alone do not enforce this invariant.</p>
+<details><summary>Self-check: in Link(8, Link(4)), is the rest 4?</summary><p>No. The rest is the whole one-item linked list Link(4). Its first is 4, and its rest is ().</p></details>
+<p class="key">The editor supplies the Link class and a to_list display helper. Use to_list only in your tests/custom inputs. Each exercise starts independently, so needed helpers must be in that editor.</p></section>
+<section id="processing"><h2>4. Give the smaller call a precise job</h2>
+<p>A useful worked example is counting nodes. It counts neither item values nor function calls: it counts one node per Link.</p>
+<pre><code>def length_link(s):
+    if not isinstance(s, Link):
+        return 0
+    return 1 + length_link(s.rest)</code></pre>
+<table><tr><th>Call</th><th>Responsibility</th><th>Return</th></tr><tr><td>length_link(())</td><td>Count no nodes</td><td>0</td></tr><tr><td>length_link(Link(2))</td><td>Current node plus empty tail</td><td>1 + 0 = 1</td></tr><tr><td>length_link(Link(4, Link(2)))</td><td>Current node plus the whole tail</td><td>1 + 1 = 2</td></tr><tr><td>length_link(s)</td><td>Current node plus the whole tail</td><td>1 + 2 = 3</td></tr></table>
+<p>The smaller call has already counted <em>every</em> node in rest. The parent adds only its own one node, matching the “each call counts itself” reasoning from your recursion practice. A numeric sum has a different contribution: add the current value rather than 1.</p>
+<p>Check emptiness before reading first/rest. The empty tuple has neither attribute. A loop can instead use a local cursor: advancing with <code>cursor = cursor.rest</code> changes a local name, while <code>cursor.rest = ...</code> mutates the chain.</p>
+<h3>Returning a new linked list</h3>
+<p>When the result is a chain, an empty result is (), and a nonempty result needs a Link. The recursive result can be its rest. For extension, once the first input ends, the second input already is the required final suffix.</p>
+<p>For an ascending range 4 through 6, the eventual structure is <code>Link(4, Link(5, Link(6)))</code>. Python must evaluate the inner rest before constructing its outer head. Recursive calls descend from 4 to 5 to 6, but the nodes are constructed as those calls return: 6, then 5, then 4. Iteratively prepending 4, then 5, then 6 would reverse the result.</p>
+<details><summary>Self-check: should every base case return zero?</summary><p>No. A count or sum may need zero; a chain builder needs (); a search may need False or a fallback; an extension may need the second input. Choose the identity/result required by the contract.</p></details></section>
+<section id="mapping"><h2>5. Filter selects; map transforms</h2>
+<p>Think of three separate stages on the sequence -3, 2, 5:</p>
+<table><tr><th>Stage</th><th>Items</th><th>Job</th></tr><tr><td>Input</td><td>-3, 2, 5</td><td>Visit original values</td></tr><tr><td>Keep odd items</td><td>-3, 5</td><td>Selection</td></tr><tr><td>Square survivors</td><td>9, 25</td><td>Transformation</td></tr></table>
+<p>Mapping returns one output item for every input item. Filtering returns zero or one output item for each input item. Both must return linked lists, including () for empty results.</p>
+<p>For a filter call, give the processed rest a name. If the current item passes, place it in front of that filtered rest; if it fails, return that filtered rest directly. Returning the original rest would allow rejected tail items back into the result.</p>
+<p>Test the predicate on the current <em>item</em>, not on rest. If the predicate expects an integer, giving it a Link is a type mismatch. Also distinguish a predicate’s True/False result from the item that passed it: the filter keeps the original item.</p>
+<p>Practice 19 asks you to combine your own map/filter implementations. Practice 20 transfers the idea to one traversal, with a transform that may fail on rejected values. Selection must happen before transformation for each value. Here, only output order is prescribed; no side-effect call order is required.</p>
+<details><summary>Self-check: why can “transform everything, then filter” fail?</summary><p>If you only want reciprocals of nonzero numbers, transforming zero first raises an error. Even when transformations are safe, a predicate on transformed values may express a different selection rule.</p></details>
+<p class="key">Before coding, say what the function returns: a number, an item, a truth value, or a linked list. Then make every branch return that kind of result.</p></section>
+<p class="source-links">Further reference: <a href="https://docs.python.org/3.12/library/typing.html">Python type hints</a>, <a href="https://docs.python.org/3.12/library/dataclasses.html">data classes</a>, <a href="https://docs.python.org/3.12/library/stdtypes.html">built-in types</a>, and <a href="https://docs.python.org/3.12/library/functions.html">built-in functions</a>.</p></article></main><script src="exercises-linked-lists.js"></script><script src="app.js?v=20261011"></script></body></html>

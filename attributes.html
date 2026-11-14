@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Attributes · Practice lab</title><meta name="description" content="4 distinct coding exercises, video lessons and clear notes for Attributes."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23172d42'/%3E%3Ctext x='5' y='23' fill='%238be0d2' font-size='23'%3E↻%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"><style>#notes details{padding:14px 18px;margin:20px 0;border:1px solid var(--line);border-radius:8px;background:white}#notes summary{cursor:pointer;font-weight:650}#notes .lesson-map{display:flex;flex-wrap:wrap;gap:10px}#notes .lesson-map a{padding:6px 12px;background:var(--pale);border-radius:6px}#notes .key{border-left:4px solid var(--accent);padding:12px 18px;background:var(--pale)}#notes section{scroll-margin-top:24px}#notes h3{font-size:19px}.practice-hint{margin:12px 0 20px;padding:10px 14px;border:1px solid var(--line);border-radius:7px}.practice-hint summary{cursor:pointer}.practice-hint p{margin:10px 0 0}</style></head>
+<body><header><div class="brand">↻ <strong>Recursion lab</strong></div><nav aria-label="Workbook views"><button id="practice-tab" aria-pressed="true">Practice</button><button id="notes-tab" aria-pressed="false">Your notes</button></nav><span id="runtime" role="status">Python loads when you run code</span></header><nav class="lesson-nav" aria-label="Lesson sets"><a href="foundations.html" data-lesson="foundations">Recursion foundations</a><a href="index.html" data-lesson="tree">Tree recursion &amp; partitions</a><a href="count-coins.html" data-lesson="coins">Q4 · Count Coins</a><a href="lists.html" data-lesson="lists">Lists &amp; sequences</a><a href="objects.html" data-lesson="objects">Objects &amp; types</a><a href="containers.html" data-lesson="containers">Containers</a><a href="linked-lists.html" data-lesson="linked-lists">Linked lists</a><a href="trees.html" data-lesson="trees">Trees</a><a href="mutation.html" data-lesson="mutation">Mutation</a><a href="oop.html" data-lesson="oop">Objects &amp; methods</a><a href="attributes.html" data-lesson="attributes" aria-current="page">Attributes</a><a href="inheritance.html" data-lesson="inheritance">Inheritance &amp; special methods</a><a href="iterators.html" data-lesson="iterators">Iterators</a><a href="efficiency.html" data-lesson="efficiency">Measuring efficiency</a></nav>
+<main id="practice"><aside><p class="eyebrow">5 VIDEOS · 4 CHALLENGES</p><h1>Attributes</h1><label for="exercise-select">Choose a coding problem</label><select id="exercise-select"></select><div id="exercise-list"></div></aside><section class="workspace"><div class="problem-heading"><span class="eyebrow" id="topic"></span><span id="progress"></span></div><h2 id="problem-title">01 · Change the shared default</h2><p id="prompt">Set Plan.rate to new_rate and return the charges of plans in order. Existing instance overrides still win. Do not write rate onto individual plans. Keep the supplied definitions unchanged.</p><p class="constraint" id="constraint">Follow the approach specified in the prompt.</p><details class="practice-hint"><summary>Need a hint?</summary><p id="practice-hint"></p></details><div class="editor-top"><label for="code">Your Python code</label><span id="saved">Draft saved on this device</span></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" rows="13" aria-label="Your Python code">class Plan:
+    rate = 2
+    def __init__(self, units):
+        self.units = units
+    def charge(self):
+        return self.units * self.rate
+
+# --- Your work below ---
+def update_default(plans, new_rate):
+    # Write your solution here.
+    pass
+</textarea><div class="actions"><button class="primary" id="test">Check work</button><button id="stop" disabled>Stop</button><span id="shortcut">Ctrl / ⌘ + Enter to test</span></div><section class="feedback" aria-live="polite"><h3 id="result-title">Ready for your first attempt</h3><p id="result-message">Write a solution, then test it. Feedback gives you a direction, never the implementation.</p><div id="results"></div></section><div class="try-grid"><section><label for="doctests">Editable doctests</label><p class="field-help">Add calls after &gt;&gt;&gt; and the expected output on the next line. Core checks still run.</p><textarea id="doctests" spellcheck="false" rows="9"></textarea></section><section><label for="scratch">Try your own inputs</label><p class="field-help">Call your functions or print intermediate results. The final expression is displayed.</p><textarea id="scratch" spellcheck="false" rows="5"></textarea><button id="run">Run input</button><pre id="scratch-output" aria-live="polite">Your output appears here.</pre></section></div></section></main><main id="notes" hidden><article id="notes-content"><p class="notes-download"><a href="attributes-notes.md" download>Download these notes</a></p><h1>Attributes: where a value belongs changes how it behaves</h1>
+<p>You already know how to define a class, initialize instance fields, and call a method. This chapter focuses on the next layer: a class can store its own shared attributes, an instance can hide a shared value, and Python follows a lookup rule when you use a dot. For prerequisites, revisit <a href="oop.html">Object-oriented programming</a>; these exercises concentrate on the new distinctions.</p>
+<nav class="lesson-map" aria-label="Attributes notes sections"><a href="#attributes-shared">1. Class attributes</a><a href="#attributes-lookup">2. Lookup</a><a href="#attributes-assignment">3. Assignment</a><a href="#attributes-functions">4. Functions and methods</a><a href="#attributes-combine">5. Following a dot expression</a></nav>
+<table><tr><th>Your video</th><th>What is new here?</th><th>Read</th></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=mimP7cNrSHA" target="_blank" rel="noopener">Method Calls</a></td><td>The receiver can be an expression; method lookup precedes the call</td><td><a href="#attributes-combine">Section 5</a></td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=FfaDt5BIET8" target="_blank" rel="noopener">Attribute Lookup</a></td><td>Instance-first lookup, class fallback, getattr and hasattr</td><td><a href="#attributes-lookup">Section 2</a></td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=v_x70Eh2zNc" target="_blank" rel="noopener">Class Attributes</a></td><td>One shared value on the class, rather than a copied field</td><td><a href="#attributes-shared">Section 1</a></td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=3tDCHG-qyt4" target="_blank" rel="noopener">Bound Methods</a></td><td>Class-function calls supply the receiver explicitly</td><td><a href="#attributes-functions">Section 4</a></td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=Qxgl9ErC3uU" target="_blank" rel="noopener">Attribute Assignment</a></td><td>Class updates versus individual overrides</td><td><a href="#attributes-assignment">Section 3</a></td></tr></table>
+<p><small>These notes were checked against all five available supplied-video transcripts. The explanatory order groups related ideas rather than repeating an exercise quota per video. The author’s <a href="https://composingprograms.com/pages/25-object-oriented-programming.html#class-attributes" target="_blank" rel="noopener">textbook chapter</a> is an optional reference.</small></p>
+
+<section id="attributes-shared"><h2>1. Class attributes belong to the class</h2>
+<p>Consider a fleet whose delivery vans normally have the same speed limit. Each van has its own name, but a shared default limit belongs to the class. Assignment in the class body creates that class attribute. Assignment through self in the initializer creates an instance attribute instead.</p>
+<pre><code>class DeliveryVan:
+    limit = 40
+
+    def __init__(self, name):
+        self.name = name
+
+    def travel_time(self, distance):
+        return distance / self.limit
+
+east = DeliveryVan('East')
+west = DeliveryVan('West')
+DeliveryVan.limit              # 40
+east.limit                     # 40
+west.limit                     # 40</code></pre>
+<p>There is one limit attribute on DeliveryVan, not an automatically copied limit field on every van. Both instances can read it because instance lookup can continue into the class. The initializer does not need to copy the default into each instance. Doing so would change what happens when the shared setting is updated later.</p>
+<p>A class is an object too: the expression DeliveryVan refers to the class object. DeliveryVan.limit selects its attribute. In contrast, east refers to one instance, with its own name attribute. Methods defined by a def in the class body are class attributes containing functions, which receive special handling when found through an instance.</p>
+<details><summary>Self-check: does east.limit mean that limit must be stored inside east?</summary><p>No. A dot expression tells you what was looked up, not where the successful lookup found it. Here the class supplies the value because east has no instance attribute named limit.</p></details>
+<p class="key">A class attribute provides one shared value. An instance can use it without storing its own copy.</p></section>
+
+<section id="attributes-lookup"><h2>2. Read an instance first, then its class</h2>
+<p>For the ordinary classes in this chapter, evaluate the expression to the left of the dot to obtain an object. If it is an instance, look for the named attribute on that instance first. If absent, look in its class. If the class value is a function, instance lookup produces a bound method. Inheritance and more advanced customization are outside this lesson.</p>
+<pre><code>DeliveryVan.limit = 50
+east.limit                     # 50
+west.limit                     # 50
+east.travel_time(100)          # 2.0
+
+field = 'name'
+getattr(east, field)           # 'East'
+hasattr(east, 'limit')         # True: class fallback counts
+hasattr(east, 'paint')         # False</code></pre>
+<p>The part after a literal dot is a fixed name. Writing east.field asks for an attribute actually named field, not the attribute whose name is stored in the variable field. Use getattr when a string chooses the attribute. The two-argument form requires the attribute to exist; use hasattr first when absence is permitted by your task. You can also write <code>getattr(east, field, fallback)</code>: the third argument is returned only when that attribute is missing, not when a present value is 0 or None.</p>
+<p>Presence and truthiness answer different questions. An attribute holding 0, False, an empty list, or None is still present. Never discard one merely because its value is false when a task asks for all existing attributes. Also, hasattr includes attributes found through the class; it does not mean “stored directly on this instance.”</p>
+<details><summary>Self-check: how would you select the attribute named by field?</summary><p>Use getattr(east, field). The string value inside field selects the name. Ordinary east.field uses the literal name field.</p></details>
+<p class="key">Dynamic lookup changes how the attribute’s name is supplied; it follows the same lookup rules as a dot expression.</p></section>
+
+<section id="attributes-assignment"><h2>3. Writing does not follow the same fallback rule</h2>
+<pre><code>east.limit = 30
+east.limit                     # 30: instance attribute
+west.limit                     # 50: class attribute
+DeliveryVan.limit              # still 50
+
+DeliveryVan.limit = 60
+east.limit                     # still 30
+west.limit                     # now 60
+north = DeliveryVan('North')
+north.limit                    # 60</code></pre>
+<p>For these ordinary objects, dot assignment sets an attribute on the object to the left of the dot. Assigning east.limit creates or updates an instance attribute. It does not search upward for the existing class attribute and replace that. The instance attribute shadows the class value during later reads.</p>
+<p>Assigning DeliveryVan.limit changes the class attribute. Instances without an override see the updated value; east keeps its own override. New instances also use the current class value unless initialization installs an instance attribute with that name. An alias for east reaches the same instance, so an assignment through that alias affects east’s override.</p>
+<p>Inside a method, self.limit = self.limit + 5 first reads with the lookup rule, then assigns to self. If the original value came from the class, the result still becomes an instance attribute. It does not increase the shared class setting. Separate the read target from the write target before predicting the result.</p>
+<details><summary>Self-check: why did updating the class to 60 not update east to 60?</summary><p>east already has its own limit attribute. Lookup finds 30 there and stops; it does not need the class value.</p></details>
+<p class="key">Read: instance, then class. Write: the object explicitly named to the left of the dot.</p></section>
+
+<section id="attributes-functions"><h2>4. A class function and a bound method use different call forms</h2>
+<pre><code>east.travel_time(90)                 # 3.0
+DeliveryVan.travel_time(east, 90)     # 3.0
+
+method_name = 'travel_time'
+chosen = getattr(east, method_name)
+chosen(60)                          # 2.0
+plain = getattr(DeliveryVan, method_name)
+plain(west, 120)                    # 2.0</code></pre>
+<p>Through east, travel_time becomes a bound method: its receiver is already supplied. Through DeliveryVan, travel_time is the function stored in the class, so the call explicitly supplies the object for self. Both forms execute the same function body. They differ in how that first argument is provided, not in the meaning of distance.</p>
+<p>Dynamic lookup preserves the distinction. getattr(east, method_name) gives a bound method, while getattr(DeliveryVan, method_name) gives the function. A bound method needs the ordinary explicit arguments only. Adding east again would supply too many arguments. Conversely, calling the class function without a receiver omits a required argument.</p>
+<p>The previous OOP chapter already taught saving a bound method and calling it later. The new application here is selecting a method by a string or retrieving the underlying class function. Do not recreate an instance to manufacture a receiver: use the object the task supplies so its overrides and lasting state are respected.</p>
+<details><summary>Self-check: does the class-function form construct another van?</summary><p>No. DeliveryVan.travel_time is an attribute lookup, not a call to DeliveryVan itself. The existing instance east is passed explicitly to that function.</p></details>
+<p class="key">Instance lookup supplies self automatically. Class lookup returns the ordinary function, which needs self explicitly.</p></section>
+
+<section id="attributes-combine"><h2>5. Follow the actual object to the left of the dot</h2>
+<p>The receiver need not be a simple variable name. It can be a list selection, a function call returning an object, or a chain of attribute selections. Evaluate that expression to find the receiver before thinking about the method. The name after a literal dot remains a simple fixed name.</p>
+<pre><code>vans = [east, west]
+vans[1].travel_time(120)        # 2.0: west uses limit 60
+
+def pick_van(index):
+    return vans[index]
+
+pick_van(0).travel_time(90)     # 3.0: east uses limit 30
+pick_van(1).limit = 45
+west.limit                     # 45: assignment targets west
+DeliveryVan.limit              # still 60</code></pre>
+<p>In the call, the dot expression is the operator expression: evaluate it to obtain a method, then evaluate the explicit arguments and call the method. An expression such as pick_van(1).limit = 45 evaluates pick_van(1) to west and sets an attribute on that instance. The function did not copy the van or turn the assignment into a class update.</p>
+<p>For a reliable trace, record which object each expression produces, where the attribute lookup succeeds, and whether you are reading or writing. Compare an unmodified peer as well as the changed instance. A solution can produce one correct result while accidentally changing the shared setting for every other instance.</p>
+<details><summary>Self-check: does pick_van(1).limit = 45 change every van?</summary><p>No. The receiver expression produces west, so the assignment installs west’s instance override. The class value stays 60, and east keeps its separate override of 30.</p></details>
+<p class="key">A complicated receiver expression follows the same rules: evaluate the receiver, look up or assign the attribute on the appropriate object, then perform the requested operation.</p></section>
+<section><h2>Practice map</h2><p>Switch to <strong>Practice</strong> above. Each task targets a different decision; the expandable hints are there when you need them.</p><ol class="coverage-map"><li><strong>Change the shared default</strong> — class attributes</li><li><strong>Give one object its own rate</strong> — attribute assignment</li><li><strong>Look up a named attribute</strong> — dynamic lookup</li><li><strong>Supply self explicitly</strong> — methods and functions</li></ol></section></article></main><script src="exercises-attributes.js"></script><script src="app.js?v=20261011"></script></body></html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lists &amp; sequences · Practice lab</title><meta name="description" content="Six video lessons explained with worked examples and 24 checked Python coding exercises."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23172d42'/%3E%3Ctext x='5' y='23' fill='%238be0d2' font-size='23'%3E↻%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"><style>#notes details{padding:14px 18px;margin:20px 0;border:1px solid var(--line);border-radius:8px;background:white}#notes summary{cursor:pointer;font-weight:650}#notes .lesson-map{display:flex;flex-wrap:wrap;gap:10px}#notes .lesson-map a{padding:6px 12px;background:var(--pale);border-radius:6px}#notes .key{border-left:4px solid var(--accent);padding:12px 18px;background:var(--pale)}#notes section{scroll-margin-top:24px}#notes h3{font-size:19px}</style></head>
+<body><header><div class="brand">↻ <strong>Recursion lab</strong></div><nav aria-label="Workbook views"><button id="practice-tab" aria-pressed="true">Practice</button><button id="notes-tab" aria-pressed="false">Your notes</button></nav><span id="runtime" role="status">Python loads when you run code</span></header><nav class="lesson-nav" aria-label="Lesson sets"><a href="foundations.html" data-lesson="foundations">Recursion foundations</a><a href="index.html" data-lesson="tree">Tree recursion &amp; partitions</a><a href="count-coins.html" data-lesson="coins">Q4 · Count Coins</a><a href="lists.html" data-lesson="lists" aria-current="page">Lists &amp; sequences</a><a href="objects.html" data-lesson="objects">Objects &amp; types</a><a href="containers.html" data-lesson="containers">Containers</a><a href="linked-lists.html" data-lesson="linked-lists">Linked lists</a><a href="trees.html" data-lesson="trees">Trees</a><a href="mutation.html" data-lesson="mutation">Mutation</a><a href="oop.html" data-lesson="oop">Objects &amp; methods</a><a href="attributes.html" data-lesson="attributes">Attributes</a><a href="inheritance.html" data-lesson="inheritance">Inheritance &amp; special methods</a><a href="iterators.html" data-lesson="iterators">Iterators</a><a href="efficiency.html" data-lesson="efficiency">Measuring efficiency</a></nav>
+<main id="practice"><aside><p class="eyebrow">SIX VIDEOS · 24 CHALLENGES</p><h1>Lists &amp; sequences</h1><label for="exercise-select">Choose a coding problem</label><select id="exercise-select"></select><div id="exercise-list"></div></aside><section class="workspace"><div class="problem-heading"><span class="eyebrow" id="topic"></span><span id="progress"></span></div><h2 id="problem-title">01 · Sum the digits</h2><p id="prompt">Write a recursive function that adds the decimal digits of a nonnegative integer. Include zero.</p><p class="constraint" id="constraint">Use recursion. No loops or comprehensions.</p><div class="editor-top"><label for="code">Your Python code</label><span id="saved">Draft saved on this device</span></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" rows="13" aria-label="Your Python code">def sum_digits(n):
+    # Write your solution here.
+    pass</textarea><div class="actions"><button class="primary" id="test">Check work</button><button id="stop" disabled>Stop</button><span id="shortcut">Ctrl / ⌘ + Enter to test</span></div><section class="feedback" aria-live="polite"><h3 id="result-title">Ready for your first attempt</h3><p id="result-message">Write a solution, then test it. Feedback gives you a direction, never the implementation.</p><div id="results"></div></section><div class="try-grid"><section><label for="doctests">Editable doctests</label><p class="field-help">Add calls after &gt;&gt;&gt; and the expected output on the next line. Core checks still run.</p><textarea id="doctests" spellcheck="false" rows="9"></textarea></section><section><label for="scratch">Try your own inputs</label><p class="field-help">Call your functions or print intermediate results. The final expression is displayed.</p><textarea id="scratch" spellcheck="false" rows="5"></textarea><button id="run">Run input</button><pre id="scratch-output" aria-live="polite">Your output appears here.</pre></section></div></section></main><main id="notes" hidden><article id="notes-content"><p class="notes-download"><a href="lists-notes.md" download>Download these notes</a></p><h1>Lists &amp; sequences, one idea at a time</h1>
+<p>A list lets one name refer to several values. The next question is how to work with those values: select one, test whether one is present, visit each one, build a new list, or solve a smaller version of the same problem.</p>
+<p>These notes follow all six of your John DeNero videos. The explanations and extra examples are written for this workbook. Practice problems include new applications beyond the videos. Read one section, try its exercises, then move on.</p>
+<nav class="lesson-map" aria-label="Notes sections"><a href="#lists">1. Lists</a><a href="#containers">2. Containers</a><a href="#loops">3. For loops</a><a href="#ranges">4. Ranges</a><a href="#comprehensions">5. Comprehensions</a><a href="#recursion">6. List recursion</a></nav>
+<table><tr><th>Your video</th><th>Focus and useful moments</th><th>Practice</th></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=-Q45UcQ2XJk" target="_blank" rel="noopener">Lists</a></td><td>0:19 indexing · 1:42 expressions · 2:21 combining lists · 2:51 nested lists</td><td>1–4</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=TgeU-nYxdlE" target="_blank" rel="noopener">Containers</a></td><td>0:21 membership · 1:30 whole elements · 2:01 nesting depth</td><td>5–7</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=nMbXYJE8Xos" target="_blank" rel="noopener">For Statements</a></td><td>0:45 while version · 2:56 for version · 3:56 execution · 5:26 unpacking</td><td>8–11</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=XPHeaItep-Y" target="_blank" rel="noopener">Ranges</a></td><td>0:50 endpoints · 2:03 list constructor · 2:30 one argument · 4:28 repetitions</td><td>12–14</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=HH8Dugs8tTc" target="_blank" rel="noopener">List Comprehensions</a></td><td>0:39 transform · 1:21 filter · 2:22 combine · 2:42 divisors</td><td>15–18</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=cZGDdkfSrBQ" target="_blank" rel="noopener">Lists, Slices, &amp; Recursion</a></td><td>0:19 first/rest · 2:00 sum_list · 3:47 best sublist · 5:16 take/skip · 7:34 remaining limit</td><td>19–24</td></tr></table>
+<section id="lists"><h2>1. Lists: values with positions</h2>
+<p>A list literal uses square brackets. Commas separate its elements. In <code>scores = [12, 7, 19]</code>, the name <code>scores</code> refers to one list containing three numbers.</p>
+<table><tr><th>Index (position)</th><td>0</td><td>1</td><td>2</td></tr><tr><th>Element (value)</th><td>12</td><td>7</td><td>19</td></tr></table>
+<p><code>scores[1]</code> gives <code>7</code>. The index is an <strong>offset from the beginning</strong>: zero steps means the first element. <code>len(scores)</code> gives <code>3</code>, so the last valid nonnegative index is <code>len(scores) - 1</code>, which is 2.</p>
+<pre><code>scores = [12, 7, 19]
+scores[0]           # 12
+scores[len(scores) - 1]  # 19
+scores[3]           # IndexError: there is no fourth element</code></pre>
+<p><strong>An index is not the value stored there.</strong> If <code>i = 1</code>, then <code>i</code> is 1 while <code>scores[i]</code> is 7. An empty list <code>[]</code> has length zero and no first element.</p>
+<h3>Expressions can go inside the brackets</h3>
+<pre><code>odds = [1, 3, 5, 7]
+odds[odds[3] - odds[2]]
+# Work inside out:
+# odds[3] - odds[2] = 7 - 5 = 2
+# odds[2] = 5</code></pre>
+<p>Python first evaluates the expression producing the list, then the index expression, then selects that element. List elements can also be computed: <code>[2 + 3, 4 * 2]</code> creates <code>[5, 8]</code>. The video also shows <code>operator.getitem(s, i)</code>, which selects the same element as <code>s[i]</code>.</p>
+<h3>Adding and multiplying lists</h3>
+<pre><code>[2, 7] + [1, 8]  # [2, 7, 1, 8]
+[1, 8] * 3       # [1, 8, 1, 8, 1, 8]
+[1, 8] * 0       # []</code></pre>
+<p>List <code>+</code> joins sequences; it does not add corresponding numbers. List <code>*</code> repeats the sequence; it does not multiply each number. To add a single value to a new list, wrap it: <code>[2, 7] + [9]</code>. <code>[2, 7] + 9</code> is a type error.</p>
+<h3>A nested list is still one element</h3>
+<pre><code>rows = [[10, 20], [30, 40]]
+len(rows)   # 2: two inner lists
+rows[1]     # [30, 40]
+rows[1][0]  # 30: first select the row, then its element</code></pre>
+<p><code>[rows[1]]</code> is <code>[[30, 40]]</code>, a list containing one list. <code>rows[1]</code> is <code>[30, 40]</code>, a list containing two numbers. The brackets change the structure.</p>
+<details><summary>Check your understanding: what is len([[], [4, 5], 9])?</summary><p>3. The outer list has three elements: an empty list, a two-element list, and a number. Length does not count everything inside nested lists.</p></details></section>
+<section id="containers"><h2>2. Membership: “Is this a whole element?”</h2>
+<p>A container holds values. <code>x in s</code> asks whether an element of <code>s</code> equals <code>x</code>. It returns <code>True</code> or <code>False</code>. It does not return an index or a count.</p>
+<pre><code>digits = [1, 8, 2, 8]
+8 in digits       # True, even though it occurs twice
+5 not in digits   # True
+'1' in digits     # False: text '1' does not equal number 1
+[1, 8] in digits  # False: no element is the list [1, 8]</code></pre>
+<p>Read <code>in</code> as <strong>“equal to one of these top-level elements”</strong>. Do not read it as “somewhere inside all these brackets.”</p>
+<table><tr><th>Expression</th><th>Result</th><th>Reason</th></tr><tr><td><code>[1, 8] in [[1, 8], 2]</code></td><td>True</td><td>The first whole element matches.</td></tr><tr><td><code>1 in [[1, 8], 2]</code></td><td>False</td><td>The top-level elements are a list and the number 2.</td></tr><tr><td><code>[1, 8] in [[[1, 8]]]</code></td><td>False</td><td>The only outer element is [[1, 8]], one layer too deep.</td></tr></table>
+<p><code>x not in s</code> is equivalent to <code>not (x in s)</code>. To check two values, write two checks, such as <code>a in s and b in s</code>. The expression <code>a and b in s</code> does not perform both membership checks.</p>
+<details><summary>Check: is [2, 3] in [1, 2, 3]?</summary><p>False. The elements are the numbers 1, 2, and 3. Consecutive elements do not automatically become one list element.</p></details></section>
+<section id="loops"><h2>3. For loops: visit each value</h2>
+<p>A <code>for</code> loop repeatedly binds a name to the next element and runs the indented body. That name refers to an <strong>element</strong>, not automatically to its index.</p>
+<pre><code>for value in [4, 9, 2]:
+    print(value)
+# Prints 4, then 9, then 2 on separate lines.</code></pre>
+<p>The iterable expression is evaluated once when the loop starts. The body runs once per element unless control flow ends it early. An empty list produces zero iterations. A for statement does not create a new function call frame.</p>
+<h3>Keep a running result</h3>
+<p>Here is a worked example: count how many temperatures are below 10.</p>
+<pre><code>def cold_days(temperatures):
+    total = 0
+    for temperature in temperatures:
+        if temperature &lt; 10:
+            total += 1
+    return total</code></pre>
+<table><tr><th>Step for [8, 12, 5]</th><th>Condition</th><th>total afterward</th></tr><tr><td>Before loop</td><td>Nothing seen yet</td><td>0</td></tr><tr><td>temperature = 8</td><td>True</td><td>1</td></tr><tr><td>temperature = 12</td><td>False</td><td>1</td></tr><tr><td>temperature = 5</td><td>True</td><td>2</td></tr><tr><td>After loop</td><td>Return accumulated result</td><td>2</td></tr></table>
+<p>For this numeric counter, <code>total += 1</code> means <code>total = total + 1</code>. Initialize it <strong>before</strong> the loop. Resetting it inside the loop would discard earlier work. Put the final return <strong>after</strong> the loop; a return inside would end the function during an early iteration.</p>
+<h3>Why this is simpler than a while loop</h3>
+<pre><code># These visit the same list elements:
+i = 0
+while i &lt; len(s):
+    value = s[i]
+    print(value)
+    i += 1
+
+for value in s:
+    print(value)</code></pre>
+<p>The for loop handles advancing through the sequence. You do not need to increment an index when the task only needs values.</p>
+<h3>Unpacking pairs</h3>
+<pre><code>points = [[2, 5], [7, 1]]
+for x, y in points:
+    print(x + y)
+# First iteration: x = 2, y = 5; prints 7
+# Second iteration: x = 7, y = 1; prints 8</code></pre>
+<p>One outer element is unpacked on each iteration. Here each must contain exactly two values. A pair of variable names cannot unpack a three-element list without a different unpacking pattern.</p>
+<details><summary>Check: what does cold_days([]) return?</summary><p>0. Initialization still runs; the loop body runs zero times; the return still runs. This is why the initial accumulator matters.</p></details></section>
+<section id="ranges"><h2>4. Ranges: include the start, exclude the stop</h2>
+<p><code>range(start, stop)</code> represents increasing integers beginning with start and stopping <strong>before</strong> stop. It is a sequence, but it is not a list. Use <code>list(...)</code> to see its elements as a list.</p>
+<pre><code>list(range(3, 7))   # [3, 4, 5, 6]
+list(range(4))      # [0, 1, 2, 3]
+list(range(-2, 2))  # [-2, -1, 0, 1]
+list(range(5, 5))   # []
+list(range(5, 2))   # [] with the default positive step</code></pre>
+<p>One argument means <code>range(0, stop)</code>. For the step-1 ranges in these videos, length is <code>max(0, stop - start)</code>. When an index is valid, element i equals <code>start + i</code>.</p>
+<h3>Values, indices, and repetitions are different jobs</h3>
+<pre><code>for value in [8, 3]:
+    print(value)             # 8, then 3
+
+s = [8, 3]
+for i in range(len(s)):
+    print(i, s[i])           # 0 8, then 1 3
+
+for _ in range(3):
+    print('Go!')             # exactly three lines</code></pre>
+<p>The underscore is just a normal name used by convention when its value is unneeded. A range can be iterated directly; converting it to a list is not required for a loop.</p>
+<p class="key">If you need to include n, your stop often needs to be n + 1. If you need valid indices for s, use range(len(s)): the excluded stop is exactly the first invalid index.</p>
+<details><summary>Check: how many iterations does range(2, 6) produce?</summary><p>Four: 2, 3, 4, 5. The last value is 5, but the number of values is 4. Last value and length are different quantities.</p></details></section>
+<section id="comprehensions"><h2>5. List comprehensions: build a new list</h2>
+<p>A comprehension describes what each output element should be. Read the <code>for</code> part first, then an optional filter, then the expression at the front.</p>
+<pre><code>[expression for name in sequence if condition]</code></pre>
+<p>In plain English: <strong>“For each value in the sequence, keep it if the condition passes, then compute the output expression.”</strong> The <code>if</code> part is optional.</p>
+<pre><code>numbers = [2, 5, 8]
+[x + 10 for x in numbers]          # [12, 15, 18]
+[x for x in numbers if x &gt; 3]       # [5, 8]
+[x + 10 for x in numbers if x &gt; 3]  # [15, 18]</code></pre>
+<table><tr><th>x</th><th>Does x &gt; 3 pass?</th><th>Output x + 10</th></tr><tr><td>2</td><td>No</td><td>Nothing added</td></tr><tr><td>5</td><td>Yes</td><td>15</td></tr><tr><td>8</td><td>Yes</td><td>18</td></tr></table>
+<p>The condition uses the original x, not the transformed result. A rejected element contributes <strong>no element</strong>, not a zero or a None. Order and duplicates are preserved unless your expression changes the values. These examples leave the input list unchanged.</p>
+<h3>Comprehension variable versus index</h3>
+<pre><code>letters = ['a', 'b', 'c', 'd']
+[letters[i] for i in [3, 1, 1]]  # ['d', 'b', 'b']</code></pre>
+<p>Here the input sequence contains positions, so i is an index. In <code>[x + 1 for x in [10, 20]]</code>, x is a number to transform. The loop variable's role comes from the sequence you iterate over.</p>
+<h3>Divisibility and the video's helper</h3>
+<p><code>n % x == 0</code> means dividing n by x leaves no remainder. Do not try x = 0. The video's helper uses <code>[1] + [x for x in range(2, n) if n % x == 0]</code>. For n &gt; 1, it lists positive divisors smaller than n. It returns <code>[1]</code> for n = 1 because 1 is inserted explicitly.</p>
+<p>Exercise 18 uses the strict definition “positive divisors smaller than n,” so its answer for 1 is <code>[]</code>. The prompt calls out this intentional difference. Always let the function's specified contract decide boundary cases.</p>
+<details><summary>Check: what is [x * 2 for x in [1, 4, 5] if x &lt; 5]?</summary><p>[2, 8]. The filter keeps original values 1 and 4. Only then are those values doubled. It does not reject 4 because its doubled result is 8.</p></details></section>
+<section id="recursion"><h2>6. List recursion: first element + rest</h2>
+<p>You already learned to make a number smaller with <code>n - 1</code> or <code>n // 10</code>. For list problems, the smaller input is often the list without its first element.</p>
+<pre><code>s = [2, 4, 1]
+s[0]   # 2: one element (here, a number)
+s[1:]  # [4, 1]: a list containing the rest
+s      # [2, 4, 1]: unchanged
+
+[9][1:]  # []
+[][1:]   # []
+# But [][0] raises IndexError.</code></pre>
+<p>A slice makes a new outer list. It does not remove anything from s. This is a shallow copy: nested elements are still shared objects, which matters later when you learn mutation. These exercises do not require changing any input list.</p>
+<h3>Worked example: sum a list</h3>
+<pre><code>def sum_list(s):
+    if s == []:
+        return 0
+    return s[0] + sum_list(s[1:])</code></pre>
+<p>What does one call promise? <strong>“Give me a list, and I will return its sum.”</strong> Trust the smaller call to fulfill exactly the same promise.</p>
+<pre><code>sum_list([2, 4, 1])
+= 2 + sum_list([4, 1])
+= 2 + (4 + sum_list([1]))
+= 2 + (4 + (1 + sum_list([])))
+= 2 + (4 + (1 + 0))
+= 7</code></pre>
+<p>The first call contributes only 2. It does not manually process 4 and 1; that is the smaller call's job. Notice the types: <code>s[1:]</code> is a list, but <code>sum_list(s[1:])</code> is a number. We add two numbers.</p>
+<h3>When the returned result is a list</h3>
+<p>Some functions return a list instead of a number. If a smaller call returns <code>[6, 8]</code> and you want to put 4 in front, use <code>[4] + [6, 8]</code>, producing <code>[4, 6, 8]</code>. <code>4 + [6, 8]</code> is invalid. <code>[[4], [6, 8]]</code> creates a different nested structure.</p>
+<p class="key">Before combining results, ask: “What type does this recursive call return?” A count returns an integer; a selected sublist returns a list. Similar-looking problems can need different combining operations.</p>
+<h3>Tree recursion: choose an item or skip it</h3>
+<p>The last video asks for the selection with the largest sum that does not exceed a limit. A “sublist” here can skip elements while preserving their order; it does not have to be one contiguous slice. Each position can be used at most once.</p>
+<p>Suppose the input is <code>[4, 2, 6]</code> and the limit is 8. Focus only on the first item, 4:</p>
+<table><tr><th>Choice</th><th>List still available</th><th>Limit still available</th><th>Result of this branch</th></tr><tr><td>Take 4</td><td>[2, 6]</td><td>8 − 4 = 4</td><td>The best remaining selection is [2]; together: [4, 2], sum 6.</td></tr><tr><td>Skip 4</td><td>[2, 6]</td><td>8</td><td>The best remaining selection is [2, 6], sum 8.</td></tr></table>
+<p>Skipping 4 wins. Taking a number merely because it fits can prevent a better combination later. Tree recursion explores both choices and compares the results.</p>
+<h3>Why the arguments change differently</h3>
+<ul><li><strong>Both branches move to the rest of the list.</strong> You have decided what to do with this position, so it is no longer available.</li><li><strong>Taking spends some of the limit.</strong> Choosing 4 from a budget of 8 leaves 4.</li><li><strong>Skipping spends nothing.</strong> The budget stays 8.</li><li><strong>If the first value exceeds the limit, it cannot be taken.</strong> With positive values, adding more items cannot undo that excess.</li></ul>
+<p>This is related to your partition exercises, with one crucial change: a list position is not reusable. The partition problem could keep the same allowed size after taking it. Here taking an item must still move on to the rest.</p>
+<h3>Three related questions, three meanings</h3>
+<table><tr><th>Task</th><th>Returned value</th><th>How choices combine</th></tr><tr><td>Count exact selections</td><td>Number of successful choices</td><td>Add the counts of take and skip.</td></tr><tr><td>Find the best achievable sum</td><td>A total value</td><td>Keep the larger valid total.</td></tr><tr><td>Return the best selection</td><td>A list of chosen items</td><td>Compare candidate sums, then return a candidate list.</td></tr></table>
+<p>Do not add 1 just because a function was called. That made sense for <code>fib_calls</code>, whose job was to count calls. Here you count valid selections or optimize their value.</p>
+<h3>Base cases follow the question</h3>
+<p>For an exact-selection count, reaching target 0 is one completed choice. An empty list with a positive target has zero choices. Because these exercises use positive values, an overshoot cannot be repaired. With repeated values, positions remain distinct: <code>[2, 2]</code> has two ways to select a total of 2.</p>
+<p>For a best-sublist problem with a nonnegative limit, an empty available list gives <code>[]</code>. If nothing fits, <code>[]</code> is still a valid selection of sum zero. For a best-sum problem, return the number <code>0</code> instead.</p>
+<p>There is no universal “return zeros before ones” rule. Python stops at the first return it reaches. Write conditions so that overlapping cases get the result required by the contract.</p>
+<h3>Compare sums and decide ties explicitly</h3>
+<p>Python's comparison of two lists is not a comparison of their sums. For example, <code>[4, 2] &gt; [2, 6]</code> is True because the first differing elements are 4 and 2, even though 6 &lt; 8. Compare <code>sum(candidate)</code> values when the task is about totals.</p>
+<p>The capstone makes ties deterministic: choose the skip-first candidate whenever both sums match. For <code>[2, 3, 5]</code> and limit 5, both <code>[2, 3]</code> and <code>[5]</code> reach 5; the stated rule selects <code>[5]</code>. Neither is mathematically worse, but a precise rule makes output tests consistent.</p>
+<details><summary>Check: after taking 3 from [3, 7, 2] with a limit of 8, what remains?</summary><p>The available list is [7, 2] and the limit is 5. After skipping 3, the available list is still [7, 2], but the limit remains 8.</p></details>
+<p>These take/skip examples can explore roughly twice as many branches each time another item is added. Slicing also copies the outer list. Use small inputs while learning; a correct naive solution can still be slow on large lists. Later techniques can reuse repeated work.</p></section>
+<h2>How to use the practice</h2><p>Open <strong>Practice</strong> and work through the 24 problems in order. Write code, press <strong>Check work</strong>, and use the hint to revise. Editable doctests let you add cases, while fixed core checks still verify the task. The input box lets you run one call or print intermediate values.</p>
+<p>Before checking, predict an ordinary case, an empty or smallest case, and a case with duplicates. If a test fails, trace the smallest failing input. Your work saves in this browser on this device; each lesson set keeps its own progress.</p>
+</article></main><script src="exercises-lists.js"></script><script src="app.js?v=20261011"></script></body></html>

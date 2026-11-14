@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trees · Practice lab</title><meta name="description" content="16 coding exercises, video lessons and notes for Trees."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23172d42'/%3E%3Ctext x='5' y='23' fill='%238be0d2' font-size='23'%3E↻%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"><style>#notes details{padding:14px 18px;margin:20px 0;border:1px solid var(--line);border-radius:8px;background:white}#notes summary{cursor:pointer;font-weight:650}#notes .lesson-map{display:flex;flex-wrap:wrap;gap:10px}#notes .lesson-map a{padding:6px 12px;background:var(--pale);border-radius:6px}#notes .key{border-left:4px solid var(--accent);padding:12px 18px;background:var(--pale)}#notes section{scroll-margin-top:24px}#notes h3{font-size:19px}.practice-hint{margin:12px 0 20px;padding:10px 14px;border:1px solid var(--line);border-radius:7px}.practice-hint summary{cursor:pointer}.practice-hint p{margin:10px 0 0}</style></head>
+<body><header><div class="brand">↻ <strong>Recursion lab</strong></div><nav aria-label="Workbook views"><button id="practice-tab" aria-pressed="true">Practice</button><button id="notes-tab" aria-pressed="false">Your notes</button></nav><span id="runtime" role="status">Python loads when you run code</span></header><nav class="lesson-nav" aria-label="Lesson sets"><a href="foundations.html" data-lesson="foundations">Recursion foundations</a><a href="index.html" data-lesson="tree">Tree recursion &amp; partitions</a><a href="count-coins.html" data-lesson="coins">Q4 · Count Coins</a><a href="lists.html" data-lesson="lists">Lists &amp; sequences</a><a href="objects.html" data-lesson="objects">Objects &amp; types</a><a href="containers.html" data-lesson="containers">Containers</a><a href="linked-lists.html" data-lesson="linked-lists">Linked lists</a><a href="trees.html" data-lesson="trees" aria-current="page">Trees</a><a href="mutation.html" data-lesson="mutation">Mutation</a><a href="oop.html" data-lesson="oop">Objects &amp; methods</a><a href="attributes.html" data-lesson="attributes">Attributes</a><a href="inheritance.html" data-lesson="inheritance">Inheritance &amp; special methods</a><a href="iterators.html" data-lesson="iterators">Iterators</a><a href="efficiency.html" data-lesson="efficiency">Measuring efficiency</a></nav>
+<main id="practice"><aside><p class="eyebrow">FOUR VIDEOS · 16 CHALLENGES</p><h1>Trees</h1><label for="exercise-select">Choose a coding problem</label><select id="exercise-select"></select><div id="exercise-list"></div></aside><section class="workspace"><div class="problem-heading"><span class="eyebrow" id="topic"></span><span id="progress"></span></div><h2 id="problem-title">01 · Create a leaf</h2><p id="prompt">Return a new leaf whose label is value. Its branches must be an empty list. Keep the supplied Tree class. Do not mutate the input tree.</p><p class="constraint" id="constraint">Follow the approach specified in the prompt.</p><details class="practice-hint"><summary>Need a hint?</summary><p id="practice-hint"></p></details><div class="editor-top"><label for="code">Your Python code</label><span id="saved">Draft saved on this device</span></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" rows="13" aria-label="Your Python code">from dataclasses import dataclass, field
+@dataclass
+class Tree[T]:
+    label: T
+    branches: list[&#x27;Tree[T]&#x27;] = field(default_factory=list)
+def is_leaf(t):
+    return not t.branches
+# Display/test helper: use in tests, not as a shortcut in your solution.
+def tree_shape(t):
+    return (t.label, [tree_shape(b) for b in t.branches])
+
+# --- Your work below ---
+def make_leaf(value):
+    # Write your solution here.
+    pass
+</textarea><div class="actions"><button class="primary" id="test">Check work</button><button id="stop" disabled>Stop</button><span id="shortcut">Ctrl / ⌘ + Enter to test</span></div><section class="feedback" aria-live="polite"><h3 id="result-title">Ready for your first attempt</h3><p id="result-message">Write a solution, then test it. Feedback gives you a direction, never the implementation.</p><div id="results"></div></section><div class="try-grid"><section><label for="doctests">Editable doctests</label><p class="field-help">Add calls after &gt;&gt;&gt; and the expected output on the next line. Core checks still run.</p><textarea id="doctests" spellcheck="false" rows="9"></textarea></section><section><label for="scratch">Try your own inputs</label><p class="field-help">Call your functions or print intermediate results. The final expression is displayed.</p><textarea id="scratch" spellcheck="false" rows="5"></textarea><button id="run">Run input</button><pre id="scratch-output" aria-live="polite">Your output appears here.</pre></section></div></section></main><main id="notes" hidden><article id="notes-content"><p class="notes-download"><a href="trees-notes.md" download>Download these notes</a></p><h1>Trees: let every branch solve a smaller problem</h1>
+<p>A linked list has one rest. A tree can have many branches, and every branch is itself a tree. These notes follow your four videos in order. Each section has four original practice problems: first learn the representation, then combine branch results, carry information down paths, and finally count or select paths.</p>
+<nav class="lesson-map" aria-label="Notes sections"><a href="#tree-structure">1. Trees</a><a href="#tree-processing">2. Processing</a><a href="#tree-paths">3. Summing paths</a><a href="#tree-counting">4. Counting paths</a></nav>
+<table><tr><th>Your video</th><th>Concepts</th><th>Practice</th></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=pTPDmMH9dbs" target="_blank" rel="noopener">Trees</a></td><td>Root, labels, branches, leaves, nodes; Tree dataclass</td><td>1–4</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=u80l0ZdxjIs" target="_blank" rel="noopener">Tree Processing</a></td><td>Fibonacci trees, leaf aggregation, constructing transformed trees</td><td>5–8</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=k0VmYzZS0Jw" target="_blank" rel="noopener">Example: Summing Paths</a></td><td>Carry an accumulated number or string from root to leaf</td><td>9–12</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=9jcoCFe9efA" target="_blank" rel="noopener">Example: Counting Paths</a></td><td>Root-to-any-node endpoints and remaining-target recursion</td><td>13–16</td></tr></table>
+<section id="tree-structure"><h2>1. The representation: label plus branches</h2>
+<p>The root is the top node. A node’s direct descendants are its children, and the subtrees rooted at those children are its branches. A leaf has no branches. A path moves from a parent to one of its children at each step; it cannot jump between siblings.</p>
+<pre><code>from dataclasses import dataclass, field
+
+@dataclass
+class Tree[T]:
+    label: T
+    branches: list['Tree[T]'] = field(default_factory=list)
+
+def is_leaf(t):
+    return not t.branches
+
+t = Tree(2, [Tree(4), Tree(6, [Tree(8), Tree(10)])])
+t.label                         # 2
+t.branches[0].label             # 4
+t.branches[1].branches[0].label  # 8
+is_leaf(t)                      # False
+is_leaf(t.branches[0])          # True</code></pre>
+<p><code>t.branches</code> is a list of <em>Tree objects</em>, not a list of their labels. After indexing into that list, you have a Tree and can read its label or branches. The root exists even when branches is empty: <code>Tree(4)</code> is a one-node tree, not an empty tree.</p>
+<p><code>field(default_factory=list)</code> creates a fresh empty list for each instance whose branches are omitted. It avoids making all leaves share one mutable default list. <code>T</code> describes the label type; it does not perform runtime validation or change how you call the constructor.</p>
+<p>The lecture’s printed trees put the root first and indent each child below it. Our <code>tree_shape</code> helper displays the same structure as nested <code>(label, branches)</code> pairs, so doctests do not depend on a display method. It is supplied for tests, not as an implementation shortcut.</p>
+<details><summary>Self-check: does Tree(5, [7]) represent a branch labeled 7?</summary><p>No. The branch must be a tree: <code>Tree(5, [Tree(7)])</code>. Its branch list contains objects that support label and branches.</p></details>
+<p class="key">A Tree is never the empty linked-list sentinel (). Its stopping shape is a leaf whose branches list is empty.</p></section>
+<section id="tree-processing"><h2>2. Combine answers from branches</h2>
+<p>When you need a total, count, or extremum, let each recursive call answer the same question for one entire branch. The parent combines those answers. A branch may contain many nodes; reading only its root label is not enough to process everything underneath it.</p>
+<pre><code>def count_nodes(t):
+    return 1 + sum(count_nodes(b) for b in t.branches)
+
+count_nodes(t)                   # 5</code></pre>
+<p>The current call counts its own node with 1. Every recursive call counts all nodes in a different branch. For a leaf, the generator visits no branches and <code>sum</code> gives 0, so the result is 1. This function has a base case through empty iteration even without a separate if.</p>
+<p>Leaf-only calculations need a different contribution. A leaf contributes its label or one leaf count. An internal node combines its branches’ results without including its own label. For a largest-leaf calculation, a huge internal label must not win. Initializing the answer to zero also fails when all qualifying labels are negative.</p>
+<p>The processing video builds Fibonacci trees: the base cases are leaves with labels 0 and 1; other nodes contain recursively built branches for n−2 and n−1, with their root labels added. The fact that its root equals the sum of its leaves is a property of those particular trees, not a rule for all trees.</p>
+<p>A transformation that returns a new tree must construct a new root and recursively construct its branches. Reusing an input branch can give the right display while still sharing unwanted mutable nodes.</p>
+<details><summary>Self-check: should a tree traversal forbid all loops?</summary><p>No. These videos use comprehensions and loops over branches while making recursive calls on those branches. The new exercises allow that pattern. Recursion is still required to handle arbitrary depth.</p></details>
+<p class="key">Say what each recursive call returns: an integer, a boolean, a list, or a Tree. Combine results using operations appropriate to that type.</p></section>
+<section id="tree-paths"><h2>3. Carry information downward</h2>
+<p>Some questions concern the labels along a path, rather than independent subtree totals. A helper parameter can carry the path accumulated so far. Add the current label, then either handle a leaf or pass the updated value to each branch.</p>
+<pre><code>def show_paths(t, prefix=()):
+    path = prefix + (t.label,)
+    if is_leaf(t):
+        print(path)
+    else:
+        for branch in t.branches:
+            show_paths(branch, path)
+
+show_paths(Tree(1, [Tree(2), Tree(3, [Tree(4)])]))
+# (1, 2)
+# (1, 3, 4)</code></pre>
+<p>Each sibling starts from its parent’s path. The path ending in 2 must not accidentally become the prefix for the branch beginning with 3. Tuples, numbers, and strings let each recursive call use its own updated value without mutating another branch’s accumulated state.</p>
+<p>The Summing Paths video uses string labels to produce words. The same <code>+</code> expression adds numbers or concatenates strings, but the starting value must fit the labels: 0 for numeric sums and an empty string for text. Print at leaves when the requested endpoints are leaves, not at every intermediate node.</p>
+<p>Printing and returning are different jobs. A printing traversal can return None and call every branch in order. A function returning a list of path results must combine those branch lists and return the combined list. Duplicate results correspond to different paths and usually remain unless the prompt says otherwise.</p>
+<details><summary>Self-check: why not use one global running total for every branch?</summary><p>It would mix unrelated paths unless you carefully restored it. A helper argument passes exactly the parent’s accumulated value into each child call, making the responsibility explicit.</p></details></section>
+<section id="tree-counting"><h2>4. Count endpoints without losing later matches</h2>
+<p>The Counting Paths video counts root-to-<em>any-node</em> paths. The root by itself is a valid endpoint. An internal node can qualify even though it has branches. This differs from counting complete root-to-leaf paths.</p>
+<pre><code>example = Tree(3, [Tree(0), Tree(1, [Tree(-1)])])
+# Root-to-node sums: 3, 3, 4, 3.
+# Three endpoints have sum 3; only two are leaves.</code></pre>
+<p>A remaining-target helper asks a branch to make up whatever total remains after using the current label. If the original target is 7 and the current label is 3, that branch must contribute 4. This is the same accounting idea as subtracting a selected part in partition problems.</p>
+<p>Finding one match does not mean returning immediately. A descendant with label 0 could create another matching endpoint; a negative value could bring a larger sum back to the target. Do not stop merely because the target has been reached or the running sum has overshot when the labels may be negative.</p>
+<p>For a requested sequence of labels, check the current root against the next expected value, then explore branches for the remaining sequence. A branch choice must keep the entire continuation together; selecting matching labels from different siblings is not a path.</p>
+<p>The depth-copy challenge transfers this helper idea to a nonnegative depth budget. The root is at depth 0. When the remaining budget is zero, the new result root has no branches; the input subtree remains intact.</p>
+<details><summary>Self-check: can a leaf have branches=[] and still contribute one path?</summary><p>Yes. A one-node tree has one root-to-leaf path containing its single label. Its zero branches do not make it a zero-node tree.</p></details>
+<p class="key">Before coding, identify the endpoint rule: any node or only a leaf. Then choose a helper state and decide whether matching at the current node should also continue into its branches.</p></section>
+<p class="source-links">Sources: your four linked videos (available auto-generated captions, checked against their Python concepts), <a href="https://docs.python.org/3.12/library/dataclasses.html">Python dataclasses and default factories</a>, and <a href="https://composingprograms.com/pages/23-sequences.html#trees">the instructor’s tree reference</a>. The workbook uses the dataclass representation from your videos, rather than the textbook’s list-based tree abstraction.</p>
+</article></main><script src="exercises-trees.js"></script><script src="app.js?v=20261011"></script></body></html>
