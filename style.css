@@ -35,3 +35,88 @@ a:focus-visible, summary:focus-visible {
     padding: 18px 16px;
   }
 }
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: -.035em;
+}
+.brand-mark {
+  display: grid;
+  width: 38px;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #007568, #183754);
+  color: #fff;
+  font: 700 25px/1 system-ui, sans-serif;
+  box-shadow: 0 3px 8px #18375430;
+}
+
+.code-frame {
+  position: relative;
+  margin: 8px 0;
+  border-radius: 8px;
+  background: #101d30;
+}
+.code-frame .code-backdrop,
+.code-frame textarea {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid transparent;
+  font: 15px/1.6 Consolas, 'Courier New', monospace;
+  tab-size: 4;
+  white-space: pre;
+  overflow-wrap: normal;
+}
+.code-frame .code-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  color: #e2e8f5;
+}
+.code-frame textarea,
+.code-frame #code {
+  position: relative;
+  overflow: auto;
+  background: transparent;
+  color: transparent;
+  caret-color: #fff;
+  border-color: #52647c;
+}
+.code-frame textarea::selection {
+  background: #5676ab80;
+  color: transparent;
+}
+.token-keyword { color: #deb0ff; }
+.token-builtin { color: #8edbff; }
+.token-string { color: #a7ebb5; }
+.token-comment { color: #9eafc7; }
+.token-number { color: #ffcd9e; }
+.token-operator, .token-prompt { color: #82e8d4; }
+
+@media (max-width: 720px) {
+  .code-frame .code-backdrop, .code-frame textarea { font-size: 16px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  button, .lesson-nav a {
+    transition: transform 220ms cubic-bezier(.22,1.5,.4,1), background-color 180ms ease, box-shadow 180ms ease;
+  }
+  @media (hover: hover) {
+    button:not(:disabled):hover, .lesson-nav a:hover {
+      transform: translateY(-2px) scale(1.025);
+      box-shadow: 0 4px 9px #172d421c;
+    }
+  }
+  button:not(:disabled):active, .lesson-nav a:active {
+    transform: translateY(1px) scale(.95);
+    transition-duration: 85ms;
+  }
+}
+@media (forced-colors: active) {
+  .code-frame .code-backdrop { visibility: hidden; }
+  .code-frame textarea, .code-frame #code { color: CanvasText; caret-color: CanvasText; }
+  .code-frame textarea::selection { color: HighlightText; background: Highlight; }
+}

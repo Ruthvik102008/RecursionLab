@@ -10,6 +10,86 @@ function persist(){try{localStorage.setItem(key,JSON.stringify({drafts,selected}
 function capture(){const d=draft();d.code=$('code').value;d.doctests=$('doctests').value;d.scratch=$('scratch').value;persist();}
 function drawProgress(){const count=problems.filter(p=>drafts[p.id]?.passed).length;$('progress').textContent=`${count} / ${problems.length} complete`;document.querySelectorAll('#exercise-list button').forEach((b,i)=>{b.setAttribute('aria-current',i===selected?'true':'false');b.textContent=`${drafts[problems[i].id]?.passed?'✓':String(i+1).padStart(2,'0')}  ${problems[i].title}`;});}
 $('shortcut').textContent = 'Ctrl / ⌘ + Enter to test · Ctrl / ⌘ + ] to indent';
+  const pythonTokens = /(?<comment>#[^\n]*)|(?<string>"""[\s\S]*?(?:"""|$)|'''[\s\S]*?(?:'''|$)|"(?:\\[^\n]|[^"\\\n])*"?|'(?:\\[^\n]|[^'\\\n])*'?)|(?<prompt>^\s*>>>|^\s*\.\.\.)|(?<number>\b(?:0[xX][\da-fA-F_]+|0[bB][01_]+|0[oO][0-7_]+|\d[\d_]*(?:\.[\d_]*)?(?:[eE][+-]?[\d_]+)?))|(?<word>[\p{ID_Start}_][\p{ID_Continue}]*)|(?<operator>[+*/%=<>!&|^~@:-]+)/gmu;
+  const keywords = new Set('and as assert async await break case class continue def del elif else except False finally for from global if import in is lambda match None nonlocal not or pass raise return True try while with yield'.split(' '));
+  const builtins = new Set('abs all any bool dict enumerate float int len list max min print range reversed set sorted str sum tuple type zip'.split(' '));
+
+  function addSyntaxColors(editor) {
+    const frame = document.createElement('div');
+    frame.className = 'code-frame';
+    const backdrop = document.createElement('pre');
+    backdrop.className = 'code-backdrop';
+    backdrop.setAttribute('aria-hidden', 'true');
+    editor.before(frame);
+    frame.append(backdrop, editor);
+    editor.wrap = 'off';
+
+    function syncScroll() {
+      backdrop.scrollTop = editor.scrollTop;
+      backdrop.scrollLeft = editor.scrollLeft;
+    }
+
+    function repaint() {
+      const source = editor.value;
+      const tokens = document.createDocumentFragment();
+      let end = 0;
+      for (const match of source.matchAll(pythonTokens)) {
+        const [token] = match;
+        const group = Object.keys(match.groups).find(name => match.groups[name] !== undefined);
+        const kind = group === 'word'
+          ? keywords.has(token) ? 'keyword' : builtins.has(token) ? 'builtin' : null
+          : group;
+        tokens.append(source.slice(end, match.index));
+        if (kind) {
+          const span = document.createElement('span');
+          span.className = 'token-' + kind;
+          span.textContent = token;
+          tokens.append(span);
+        } else {
+          tokens.append(token);
+        }
+        end = match.index + token.length;
+      }
+      tokens.append(source.slice(end), '\n');
+      backdrop.replaceChildren(tokens);
+      syncScroll();
+    }
+
+    editor.addEventListener('input', repaint);
+    editor.addEventListener('scroll', syncScroll, {passive: true});
+    repaint();
+    return repaint;
+  }
+
+  const repaintEditors = ['code', 'doctests', 'scratch'].map(id => addSyntaxColors($(id)));
+  const brand = document.querySelector('.brand');
+  const mark = document.createElement('span');
+  mark.className = 'brand-mark';
+  mark.setAttribute('aria-hidden', 'true');
+  mark.textContent = '↻';
+  const wordmark = document.createElement('strong');
+  wordmark.textContent = 'Recursion Lab';
+  brand.replaceChildren(mark, wordmark);
+
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  let rebound;
+  motion.addEventListener('change', () => rebound?.cancel());
+  window.addEventListener('wheel', event => {
+    if (motion.matches || event.ctrlKey || !event.deltaY ||
+        event.target.closest('textarea, select, pre')) return;
+    const scroller = document.scrollingElement;
+    const atTop = scroller.scrollTop <= 0 && event.deltaY < 0;
+    const atBottom = scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 1 && event.deltaY > 0;
+    if ((!atTop && !atBottom) || rebound?.playState === 'running') return;
+    const panel = $('practice').hidden ? $('notes') : $('practice');
+    const distance = Math.min(10, Math.abs(event.deltaY) / 9) * (atTop ? 1 : -1);
+    rebound = panel.animate(
+      [{translate: '0 0'}, {translate: '0 ' + distance + 'px', offset: .32}, {translate: '0 0'}],
+      {duration: 420, easing: 'cubic-bezier(.22,.75,.25,1)'}
+    );
+
+  }, {passive: true});
+
 function clearResult(){document.querySelector('.feedback').classList.remove('error');$('result-title').textContent='Ready for your attempt';$('result-message').textContent='Run the doctests and core checks. Hints will point you toward the issue without giving you a solution.';$('results').replaceChildren();}
 function select(index){if(busy)return;capture();selected=index;const p=problems[index],d=draft();$('exercise-select').value=String(index);$('topic').textContent=p.topic;$('problem-title').textContent=`${String(index+1).padStart(2,'0')} · ${p.title}`;$('prompt').textContent=p.prompt;if($('practice-hint')){$('practice-hint').textContent=p.hint;$('practice-hint').closest('details').open=false;}$('constraint').textContent=modeLabels[p.mode];$('code').value=d.code;$('doctests').value=d.doctests;$('scratch').value=d.scratch;$('scratch-output').textContent='Your output appears here.';clearResult();drawProgress();persist();}
 problems.forEach((p,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`${String(i+1).padStart(2,'0')} · ${p.title}`;$('exercise-select').append(o);const b=document.createElement('button');b.type='button';b.onclick=()=>select(i);$('exercise-list').append(b);});
