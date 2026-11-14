@@ -387,3 +387,8 @@ header a.brand:active .brand-mark {
     transform: translateY(2px) scale(.94);
   }
 }
+
+/* Compact desktop lessons while preserving browser zoom and mobile sizing. */
+@media (min-width: 1100px) {
+  body:not(.home) { zoom: .9; }
+}
