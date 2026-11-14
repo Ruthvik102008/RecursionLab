@@ -366,3 +366,17 @@ header a.brand:active .brand-mark {
 
 .profile-icon { flex: none; display: block; }
 .profile-icon--github { filter: brightness(0) invert(1); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .lesson-nav a {
+    transition: transform 320ms cubic-bezier(.24, 1.85, .46, 1),
+      background-color 180ms ease, box-shadow 180ms ease;
+  }
+  @media (hover: hover) {
+    .lesson-nav a:hover { transform: translateY(-4px) scale(1.045); }
+  }
+  .lesson-nav a:active {
+    transform: translateY(1px) scale(.94);
+    transition-duration: 90ms;
+  }
+}
