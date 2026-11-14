@@ -356,37 +356,3 @@ header a.brand:active .brand-mark {
   height: auto;
   object-fit: contain;
 }
-.campanile-o { position: relative; }
-.campanile {
-  position: absolute;
-  left: 51%;
-  top: 56%;
-  width: .155em;
-  height: .33em;
-  transform: translate(-50%, -50%);
-  color: inherit;
-  pointer-events: none;
-}
-.campanile::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: currentColor;
-  clip-path: polygon(
-    50% 0, 83% 33%, 83% 37%, 94% 37%, 94% 44%,
-    78% 44%, 78% 88%, 92% 88%, 92% 100%,
-    8% 100%, 8% 88%, 22% 88%, 22% 44%,
-    6% 44%, 6% 37%, 17% 37%, 17% 33%
-  );
-}
-.campanile span {
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  width: .039em;
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: #172e4a;
-  box-shadow: 0 .063em 0 -.008em #172e4a;
-}
