@@ -286,3 +286,14 @@ header, .lesson-nav {
     transition-duration: 80ms;
   }
 }
+
+/* The lesson logo is a link outside the homepage. */
+header a.brand {
+  border-radius: 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+header a.brand:active { background-color: #e1effa; }
+header a.brand:active .brand-mark {
+  background: #28738a;
+  box-shadow: none;
+}
