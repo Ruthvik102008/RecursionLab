@@ -297,3 +297,17 @@ header a.brand:active .brand-mark {
   background: #28738a;
   box-shadow: none;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  header a.brand {
+    transition: transform 240ms cubic-bezier(.22, 1.65, .4, 1),
+      background-color 150ms ease;
+  }
+  @media (hover: hover) {
+    header a.brand:hover { transform: translateY(-3px) scale(1.035); }
+  }
+  header a.brand:active {
+    transform: translateY(1px) scale(.96);
+    transition-duration: 80ms;
+  }
+}
