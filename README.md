@@ -7,6 +7,8 @@ This only covers recursion and a few other broader, related topics. Feel free to
 
 To open the lab in a new tab from GitHub, Ctrl-click the link (Command-click on macOS).
 
+![RecursionLab homepage showing the lesson grid and profile links](assets/recursionlab-homepage.png)
+
 ## Run locally
 
 1. Install Python 3 if you don't already have it.
