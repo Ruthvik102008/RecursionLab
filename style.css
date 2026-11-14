@@ -149,3 +149,35 @@ a:focus-visible, summary:focus-visible {
     -webkit-text-fill-color: CanvasText;
   }
 }
+
+/* Keep pointer feedback in the spring animation and preserve keyboard focus. */
+button, select, summary, .lesson-nav a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.practice-hint > summary {
+  cursor: pointer;
+}
+
+@supports selector(details::details-content) {
+  @media (prefers-reduced-motion: no-preference) {
+    .practice-hint {
+      interpolate-size: allow-keywords;
+    }
+
+    .practice-hint::details-content {
+      block-size: 0;
+      opacity: 0;
+      overflow: clip;
+      transition:
+        block-size 250ms cubic-bezier(.22, .75, .25, 1),
+        opacity 180ms ease,
+        content-visibility 250ms allow-discrete;
+    }
+
+    .practice-hint[open]::details-content {
+      block-size: auto;
+      opacity: 1;
+    }
+  }
+}
