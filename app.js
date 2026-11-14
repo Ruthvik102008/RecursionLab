@@ -80,7 +80,11 @@ $('shortcut').textContent = 'Tab / Shift+Tab to indent / outdent · Esc then Tab
   mark.textContent = '↻';
   const wordmark = document.createElement('strong');
   wordmark.textContent = 'Recursion Lab';
-  brand.replaceChildren(mark, wordmark);
+  const homeLink = document.createElement('a');
+  homeLink.href = 'home.html';
+  homeLink.append(mark, wordmark);
+  brand.replaceWith(homeLink);
+  homeLink.className = 'brand';
 
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   let rebound;
