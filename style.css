@@ -311,3 +311,35 @@ header a.brand:active .brand-mark {
     transition-duration: 80ms;
   }
 }
+
+.home-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 285px);
+  align-items: center;
+  gap: 28px;
+}
+.home .profile-card {
+  padding: 22px;
+  border: 1px solid #587ba0;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #264366, #192f4b);
+  box-shadow: 0 12px 24px #06112680;
+}
+.home .profile-card h2 {
+  margin: 0 0 14px;
+  font-size: 19px;
+}
+.home .profile-links {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.home .profile-card a {
+  margin: 0;
+  border-color: #7094b7;
+}
+@media (max-width: 720px) {
+  .home-intro { grid-template-columns: 1fr; gap: 16px; }
+  .home .profile-card { width: min(100%, 340px); }
+}
